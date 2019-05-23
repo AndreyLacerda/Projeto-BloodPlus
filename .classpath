@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/aluno/Desktop/Projeto-BloodPlus/bin/br/edu/ifsp/aluno/bd2a3/conexaosql/External JARs/sqlite-jdbc-3.27.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/aluno/Desktop/Projeto-BloodPlus/External JAR/sqlite-jdbc-3.27.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

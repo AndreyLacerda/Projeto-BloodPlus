@@ -13,10 +13,7 @@ public class ControllerSQLConnection {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		try {
-			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			
+		try {			
 			Connection conn = DriverManager.getConnection(connectionUrl);
 			
 			System.out.println("Conexão obtida com sucesso");

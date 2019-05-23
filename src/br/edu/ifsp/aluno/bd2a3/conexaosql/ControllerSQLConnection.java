@@ -1,29 +1,28 @@
 package br.edu.ifsp.aluno.bd2a3.conexaosql;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ControllerSQLConnection {
 	
 	public static void checarConexão(String SQL) {
-		String connectionUrl = "jdbc:sqlserver://localhost:1433;"
-				+ "databaseName=BloodPlusDB";
+		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try {
 			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
-			Connection conn = DriverManager.getConnection(connectionUrl, "sa", "senhadoadministrador");
+			Connection conn = DriverManager.getConnection(connectionUrl);
 			
 			System.out.println("Conexão obtida com sucesso");
 		
 
-			stmt = conn.createStatement();
+			stmt = conn.prepareStatement(SQL);
 			
 			String insert = "INSERT INTO Doador "
 					+ "VALUES "
@@ -36,7 +35,6 @@ public class ControllerSQLConnection {
 			System.out.println("Insert com sucesso");
 			rs = stmt.executeQuery(SQL);
 
-			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
 				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) );
 			}

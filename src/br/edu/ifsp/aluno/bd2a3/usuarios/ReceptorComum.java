@@ -2,14 +2,14 @@ package br.edu.ifsp.aluno.bd2a3.usuarios;
 
 public class ReceptorComum {
 	
-	private String email, senha, nome, sobrenome, dt_nasc;
+	private String email, senha, nome, sobrenome, dt_nasc, cpf;
 	private String tel, celular;
 	private float peso;
 	private String tipo_sangue, necessidade;
 	private boolean ativo, prime_vez;
 	private String regiao, endereco;
 	
-	public ReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String tel,
+	public ReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel,
 			String celular, float peso, String tipo_sangue, String necessidade, boolean ativo, boolean prime_vez,
 			String regiao, String endereco) {
 		super();
@@ -18,6 +18,7 @@ public class ReceptorComum {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dt_nasc = dt_nasc;
+		this.cpf = cpf;
 		this.tel = tel;
 		this.celular = celular;
 		this.peso = peso;
@@ -29,6 +30,12 @@ public class ReceptorComum {
 		this.endereco = endereco;
 	}
 	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -112,5 +119,22 @@ public class ReceptorComum {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	
+	public void trocarSenha(String nova_senha) {
+		if (nova_senha.contains(" ") || nova_senha.isEmpty() || nova_senha.length() < 8) {
+			System.out.println("Valor de Senha inválido!");
+		} else {
+			this.setSenha(nova_senha);
+			System.out.println("Senha alterada com sucesso!");
+		}
+	}
+	
+	public void trocarEmail(String novo_email) {
+		if (novo_email.contains("@")) {
+			this.setEmail(novo_email);
+			System.out.println("E-mail alterado com sucesso!");
+		}else
+			System.out.println("Valor de e-mail inválido");
 	}
 }

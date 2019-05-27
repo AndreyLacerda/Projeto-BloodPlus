@@ -2,14 +2,14 @@ package br.edu.ifsp.aluno.bd2a3.usuarios;
 
 public class Doador {
 	
-	private String email, senha, nome, sobrenome, dt_nasc;
+	private String email, senha, nome, sobrenome, dt_nasc, cpf;
 	private String tel, celular, tipo_sangue, regiao, endereco; 
 	private float peso;
 	private boolean sangue, rim, figado, medula, pulmao, pancreas, ativo;
 	private String ult_doacao, dt_block;
 	private int block;
 	
-	public Doador(String email, String senha, String nome, String sobrenome, String dt_nasc, String tel, String celular,
+	public Doador(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel, String celular,
 			String tipo_sangue, String regiao, String endereco, float peso, boolean sangue, boolean rim, boolean figado,
 			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, String ult_doacao) {
 		super();
@@ -18,6 +18,7 @@ public class Doador {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dt_nasc = dt_nasc;
+		this.cpf = cpf;
 		this.tel = tel;
 		this.celular = celular;
 		this.tipo_sangue = tipo_sangue;
@@ -34,6 +35,12 @@ public class Doador {
 		this.ult_doacao = ult_doacao;
 	}
 	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -160,5 +167,24 @@ public class Doador {
 	public void setBlock(int block) {
 		this.block = block;
 	}
+	
+	public void trocarSenha(String nova_senha) {
+		if (nova_senha.contains(" ") || nova_senha.isEmpty() || nova_senha.length() < 8) {
+			System.out.println("Valor de Senha inválido!");
+		} else {
+			this.setSenha(nova_senha);
+			System.out.println("Senha alterada com sucesso!");
+		}
+	}
+	
+	public void trocarEmail(String novo_email) {
+		if (novo_email.contains("@")) {
+			this.setEmail(novo_email);
+			System.out.println("E-mail alterado com sucesso!");
+		}else
+			System.out.println("Valor de e-mail inválido");
+	}
+	
+	
 	
 }

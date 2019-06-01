@@ -8,7 +8,7 @@ public class MatchPessoaInst {
 	private Doador doador;
 	private ReceptorJuridico receptor;
 	private String doacao, motivo;
-	private boolean fracasso, sucesso, cancelada;
+	private boolean fracasso, sucesso, cancelada, finalizada;
 	
 	public MatchPessoaInst(Doador doador, ReceptorJuridico receptor, String doacao) {
 		super();
@@ -63,5 +63,13 @@ public class MatchPessoaInst {
 
 	public ReceptorJuridico getReceptor() {
 		return receptor;
+	}
+
+	public boolean isFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 }

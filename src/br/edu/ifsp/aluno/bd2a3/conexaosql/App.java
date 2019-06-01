@@ -5,7 +5,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		String sql = "SELECT email, senha, nome FROM Doador WHERE email = 'teste@teste.com'";
-		ControllerSQLConnection.checarConexão(sql);
+		TesteConnectionSQLite.checarConexão(sql);
 		
 	}
 

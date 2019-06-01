@@ -8,7 +8,7 @@ public class MatchComum {
 	private Doador doador;
 	private ReceptorComum receptor;
 	private String doacao, motivo;
-	private boolean fracasso, sucesso, cancelada;
+	private boolean fracasso, sucesso, cancelada, finalizada;
 	
 	public MatchComum(Doador doador, ReceptorComum receptor, String doacao) {
 		super();
@@ -63,5 +63,13 @@ public class MatchComum {
 
 	public void setCancelada(boolean cancelada) {
 		this.cancelada = cancelada;
+	}
+
+	public boolean isFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 }

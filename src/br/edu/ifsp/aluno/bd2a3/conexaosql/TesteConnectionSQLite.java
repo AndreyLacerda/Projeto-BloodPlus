@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ControllerSQLConnection {
+public class TesteConnectionSQLite {
 	
-	public static void checarConexão(String SQL) {
+	public static boolean checarConexão(String SQL) {
 		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 
 		PreparedStatement pstmt = null;
@@ -20,7 +20,7 @@ public class ControllerSQLConnection {
 			
 			System.out.println("Conexão obtida com sucesso");
 			
-			String insert = "INSERT INTO Doador VALUES ('teste@teste.com', '1234', 'Teste', 'Conexão', '2019-05-19', '(11) 1111-1111', '(11) 91111-1111', 75, 'A+', 1, 1, 1, 1, 1, 1, 'Zona Leste', 'Rua Teste, Teste, Nº55', '', 0, '2019-05-19', 1000);";
+			String insert = "INSERT INTO Doador VALUES ('teste@teste.com', '1234', 'Teste', 'Conexão', '2019-05-19', '(11) 1111-1111', '(11) 91111-1111', 75, 'A+', 1, 1, 1, 1, 1, 1, 'Zona Leste', 'Rua Teste, Teste, Nº55', '', 0, '2019-05-19', 1000, '123.456.789-15');";
 			
 			pstmt = conn.prepareStatement(insert);
 			pstmt.execute();
@@ -39,17 +39,19 @@ public class ControllerSQLConnection {
 			rs.close();
 			pstmt.close();
 			
+			return true;
+			
 		} catch(SQLException esql) {
 			
 			System.err.println("SQLException: " + esql.getMessage());
 			System.err.println("SQLState: " + esql.getSQLState());
 			System.err.println("VendorError: " + esql.getErrorCode());
-			
+			return false;
 			
 		} catch(Exception e) {
 			
 			System.err.println("Erro: " + e.getMessage());
-			
+			return false;
 		}
 	}
 }

@@ -3,12 +3,12 @@ package br.edu.ifsp.aluno.bd2a3.usuarios;
 public class ReceptorJuridico {
 	
 	private String email, senha, nome_instituição, CNPJ;
-	private String tel1, tel2, regiao, endereco;
+	private String tel1, tel2, regiao, endereco, tipo_sangue;
 	private boolean sangue, rim, figado, medula, pulmao, pancreas, ativo;
 	
 	public ReceptorJuridico(String email, String senha, String nome_instituição, String cNPJ, String tel1, String tel2,
 			String regiao, String endereco, boolean sangue, boolean rim, boolean figado, boolean medula, boolean pulmao,
-			boolean pancreas, boolean ativo) {
+			boolean pancreas, boolean ativo, String tipo_sangue) {
 		super();
 		this.email = email;
 		this.senha = senha;
@@ -25,6 +25,7 @@ public class ReceptorJuridico {
 		this.pulmao = pulmao;
 		this.pancreas = pancreas;
 		this.ativo = ativo;
+		this.tipo_sangue = tipo_sangue;
 	}
 
 	public String getEmail() {
@@ -147,6 +148,14 @@ public class ReceptorJuridico {
 		this.ativo = ativo;
 	}
 	
+	public String getTipo_sangue() {
+		return tipo_sangue;
+	}
+
+	public void setTipo_sangue(String tipo_sangue) {
+		this.tipo_sangue = tipo_sangue;
+	}
+
 	public void trocarSenha(String nova_senha) {
 		if (nova_senha.contains(" ") || nova_senha.isEmpty() || nova_senha.length() < 8) {
 			System.out.println("Valor de Senha inválido!");

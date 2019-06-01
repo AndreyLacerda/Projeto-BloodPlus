@@ -5,13 +5,17 @@ public class ReceptorComum {
 	private String email, senha, nome, sobrenome, dt_nasc, cpf;
 	private String tel, celular;
 	private float peso;
-	private String tipo_sangue, necessidade;
+	private String tipo_sangue;
+	private boolean sangue, rim, figado, medula, pulmao, pancreas;
 	private boolean ativo, prime_vez;
+	private String ult_cirurgia, dt_block;
 	private String regiao, endereco;
+	private int block;
 	
-	public ReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel,
-			String celular, float peso, String tipo_sangue, String necessidade, boolean ativo, boolean prime_vez,
-			String regiao, String endereco) {
+	public ReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf,
+			String tel, String celular, float peso, String tipo_sangue, boolean sangue, boolean rim, boolean figado,
+			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, boolean prime_vez, String ult_cirurgia,
+			String dt_block, String regiao, String endereco, int block) {
 		super();
 		this.email = email;
 		this.senha = senha;
@@ -23,11 +27,19 @@ public class ReceptorComum {
 		this.celular = celular;
 		this.peso = peso;
 		this.tipo_sangue = tipo_sangue;
-		this.necessidade = necessidade;
+		this.sangue = sangue;
+		this.rim = rim;
+		this.figado = figado;
+		this.medula = medula;
+		this.pulmao = pulmao;
+		this.pancreas = pancreas;
 		this.ativo = ativo;
 		this.prime_vez = prime_vez;
+		this.ult_cirurgia = ult_cirurgia;
+		this.dt_block = dt_block;
 		this.regiao = regiao;
 		this.endereco = endereco;
+		this.block = block;
 	}
 	
 	public String getCpf() {
@@ -90,12 +102,66 @@ public class ReceptorComum {
 	public void setTipo_sangue(String tipo_sangue) {
 		this.tipo_sangue = tipo_sangue;
 	}
-	public String getNecessidade() {
-		return necessidade;
+	public boolean isSangue() {
+		return sangue;
 	}
-	public void setNecessidade(String necessidade) {
-		this.necessidade = necessidade;
+
+	public void setSangue(boolean sangue) {
+		this.sangue = sangue;
 	}
+
+	public boolean isRim() {
+		return rim;
+	}
+
+	public void setRim(boolean rim) {
+		this.rim = rim;
+	}
+
+	public boolean isFigado() {
+		return figado;
+	}
+
+	public void setFigado(boolean figado) {
+		this.figado = figado;
+	}
+
+	public boolean isMedula() {
+		return medula;
+	}
+
+	public void setMedula(boolean medula) {
+		this.medula = medula;
+	}
+
+	public boolean isPulmao() {
+		return pulmao;
+	}
+
+	public void setPulmao(boolean pulmao) {
+		this.pulmao = pulmao;
+	}
+
+	public boolean isPancreas() {
+		return pancreas;
+	}
+
+	public void setPancreas(boolean pancreas) {
+		this.pancreas = pancreas;
+	}
+
+	public void setUlt_cirurgia(String ult_cirurgia) {
+		this.ult_cirurgia = ult_cirurgia;
+	}
+
+	public void setDt_block(String dt_block) {
+		this.dt_block = dt_block;
+	}
+
+	public void setBlock(int block) {
+		this.block = block;
+	}
+
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -119,6 +185,16 @@ public class ReceptorComum {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	
+	public String getUlt_cirurgia() {
+		return ult_cirurgia;
+	}
+	public String getDt_block() {
+		return dt_block;
+	}
+	public int getBlock() {
+		return block;
 	}
 	
 	public void trocarSenha(String nova_senha) {

@@ -7,15 +7,13 @@ public class ReceptorComum {
 	private float peso;
 	private String tipo_sangue;
 	private boolean sangue, rim, figado, medula, pulmao, pancreas;
-	private boolean ativo, prime_vez;
-	private String ult_cirurgia, dt_block;
+	private boolean ativo;
 	private String regiao, endereco;
-	private int block;
 	
 	public ReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf,
 			String tel, String celular, float peso, String tipo_sangue, boolean sangue, boolean rim, boolean figado,
-			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, boolean prime_vez, String ult_cirurgia,
-			String dt_block, String regiao, String endereco, int block) {
+			boolean medula, boolean pulmao, boolean pancreas, boolean ativo,
+			String regiao, String endereco) {
 		super();
 		this.email = email;
 		this.senha = senha;
@@ -34,12 +32,8 @@ public class ReceptorComum {
 		this.pulmao = pulmao;
 		this.pancreas = pancreas;
 		this.ativo = ativo;
-		this.prime_vez = prime_vez;
-		this.ult_cirurgia = ult_cirurgia;
-		this.dt_block = dt_block;
 		this.regiao = regiao;
 		this.endereco = endereco;
-		this.block = block;
 	}
 	
 	public String getCpf() {
@@ -150,29 +144,11 @@ public class ReceptorComum {
 		this.pancreas = pancreas;
 	}
 
-	public void setUlt_cirurgia(String ult_cirurgia) {
-		this.ult_cirurgia = ult_cirurgia;
-	}
-
-	public void setDt_block(String dt_block) {
-		this.dt_block = dt_block;
-	}
-
-	public void setBlock(int block) {
-		this.block = block;
-	}
-
 	public boolean isAtivo() {
 		return ativo;
 	}
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
-	}
-	public boolean isPrime_vez() {
-		return prime_vez;
-	}
-	public void setPrime_vez(boolean prime_vez) {
-		this.prime_vez = prime_vez;
 	}
 	public String getRegiao() {
 		return regiao;
@@ -185,16 +161,6 @@ public class ReceptorComum {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-	
-	public String getUlt_cirurgia() {
-		return ult_cirurgia;
-	}
-	public String getDt_block() {
-		return dt_block;
-	}
-	public int getBlock() {
-		return block;
 	}
 	
 	public void trocarSenha(String nova_senha) {

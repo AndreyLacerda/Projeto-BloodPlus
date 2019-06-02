@@ -6,12 +6,10 @@ public class Doador {
 	private String tel, celular, tipo_sangue, regiao, endereco; 
 	private float peso;
 	private boolean sangue, rim, figado, medula, pulmao, pancreas, ativo;
-	private String ult_cirurgia, dt_block;
-	private int block;
 	
 	public Doador(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel, String celular,
 			String tipo_sangue, String regiao, String endereco, float peso, boolean sangue, boolean rim, boolean figado,
-			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, String ult_cirurgia) {
+			boolean medula, boolean pulmao, boolean pancreas, boolean ativo) {
 		super();
 		this.email = email;
 		this.senha = senha;
@@ -32,7 +30,6 @@ public class Doador {
 		this.pulmao = pulmao;
 		this.pancreas = pancreas;
 		this.ativo = ativo;
-		this.ult_cirurgia = ult_cirurgia;
 	}
 	
 	public String getCpf() {
@@ -149,24 +146,6 @@ public class Doador {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	public String getUlt_cirurgia() {
-		return ult_cirurgia;
-	}
-	public void setUlt_cirurgia(String ult_cirurgia) {
-		this.ult_cirurgia = ult_cirurgia;
-	}
-	public String getDt_block() {
-		return dt_block;
-	}
-	public void setDt_block(String dt_block) {
-		this.dt_block = dt_block;
-	}
-	public int getBlock() {
-		return block;
-	}
-	public void setBlock(int block) {
-		this.block = block;
-	}
 	
 	public void trocarSenha(String nova_senha) {
 		if (nova_senha.contains(" ") || nova_senha.isEmpty() || nova_senha.length() < 8) {
@@ -178,13 +157,10 @@ public class Doador {
 	}
 	
 	public void trocarEmail(String novo_email) {
-		if (novo_email.contains("@")) {
+		if (novo_email.contains("@") && novo_email.length()>4) {
 			this.setEmail(novo_email);
 			System.out.println("E-mail alterado com sucesso!");
 		}else
 			System.out.println("Valor de e-mail inválido");
 	}
-	
-	
-	
 }

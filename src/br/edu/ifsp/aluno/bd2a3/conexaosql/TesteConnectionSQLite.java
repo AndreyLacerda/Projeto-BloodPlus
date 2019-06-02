@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class TesteConnectionSQLite {
 	
-	public static boolean checarConexão(String SQL) {
+	public static boolean checarConexão() {
 		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 
 		PreparedStatement pstmt = null;
@@ -20,7 +20,8 @@ public class TesteConnectionSQLite {
 			
 			System.out.println("Conexão obtida com sucesso");
 			
-			String insert = "INSERT INTO Doador VALUES ('teste@teste.com', '1234', 'Teste', 'Conexão', '2019-05-19', '(11) 1111-1111', '(11) 91111-1111', 75, 'A+', 1, 1, 1, 1, 1, 1, 'Zona Leste', 'Rua Teste, Teste, Nº55', '', 0, '2019-05-19', 1000, '123.456.789-15');";
+			String SQL = "SELECT email, senha, nome FROM Doador WHERE email = 'teste@teste.com'";
+			String insert = "INSERT INTO Doador VALUES ('teste@teste.com', '1234', 'Teste', 'Conexão', '2019-05-19', '(11) 1111-1111', '(11) 91111-1111', 75, 'A+', 1, 1, 1, 1, 1, 1, 'Zona Leste', 'Rua Teste, Teste, Nº55', 0, '123.456.789-15');";
 			
 			pstmt = conn.prepareStatement(insert);
 			pstmt.execute();

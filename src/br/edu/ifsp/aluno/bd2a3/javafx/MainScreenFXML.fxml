@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="542.0" prefWidth="267.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <Button layoutX="82.0" layoutY="336.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="104.0" text="Button" />
+      <PasswordField layoutX="37.0" layoutY="271.0" prefHeight="25.0" prefWidth="190.0" promptText="Senha">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField layoutX="39.0" layoutY="229.0" prefHeight="25.0" prefWidth="190.0" promptText="E-mail">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="37.0" layoutY="199.0" prefHeight="16.0" prefWidth="190.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="11.0" layoutY="286.0" prefHeight="50.0" prefWidth="243.0" text="Não possui uma conta? Clique aqui e cadastre-se já!">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>

@@ -157,7 +157,7 @@ public class Doador {
 	}
 	
 	public void trocarEmail(String novo_email) {
-		if (novo_email.contains("@") && novo_email.length()>4) {
+		if (novo_email.contains("@") && novo_email.length() > 4) {
 			this.setEmail(novo_email);
 			System.out.println("E-mail alterado com sucesso!");
 		}else

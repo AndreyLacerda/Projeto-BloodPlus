@@ -48,7 +48,7 @@ public class CRUDReceptorComum {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String delete = "DELETE FROM ReceptorComum WHERE email = "+email+" AND senha = "+senha+";";
+				String delete = "DELETE FROM ReceptorComum WHERE email = '"+email+"' AND senha = '"+senha+"';";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
@@ -75,7 +75,7 @@ public class CRUDReceptorComum {
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try{
 				Connection conn = DriverManager.getConnection(connectionUrl);
-				String select = "SELECT * FROM ReceptorComum WHERE email = "+email+" AND senha = "+senha+";";
+				String select = "SELECT * FROM ReceptorComum WHERE email = '"+email+"' AND senha = '"+senha+"' ";
 				
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);

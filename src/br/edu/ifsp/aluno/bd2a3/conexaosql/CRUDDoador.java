@@ -48,7 +48,7 @@ public class CRUDDoador {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String delete = "DELETE FROM Doador WHERE email = "+email+" AND senha = "+senha+";";
+				String delete = "DELETE FROM Doador WHERE email = '"+email+"' AND senha = '"+senha+"';";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
@@ -75,8 +75,7 @@ public class CRUDDoador {
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try{
 				Connection conn = DriverManager.getConnection(connectionUrl);
-				String select = "SELECT * FROM Doador WHERE email = "+email+" AND senha = "+senha+";";
-				
+				String select = "SELECT * FROM Doador WHERE email = '" + email + "' AND senha = '" + senha + "' ";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
 				

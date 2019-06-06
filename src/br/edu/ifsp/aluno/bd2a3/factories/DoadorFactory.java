@@ -1,5 +1,6 @@
 package br.edu.ifsp.aluno.bd2a3.factories;
 
+import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
 import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
 
 public class DoadorFactory {
@@ -15,45 +16,48 @@ public class DoadorFactory {
 			return ("Senha inválida!");
 		} else
 			if(!email.contains("@") || email.length() < 4 || email.isEmpty()) {
-				return ("Senha inválida!");
+				return ("Email inválido!");
 			} else
 				if(nome.isEmpty() || nome.length() < 2) {
-					return ("Senha inválida!");
+					return ("Nome inválido!");
 				} else
 					if(sobrenome.isEmpty() || sobrenome.length() < 2) {
-						return ("Senha inválida!");
+						return ("Sobrenome inválido!");
 					} else
 						if(dt_nasc.isEmpty() || ano_nasc < 2003 || dt_nasc.length() < 4 || dt_nasc.length() > 10) {
-							return ("Senha inválida!");
+							return ("Data de Nascimento inválida!");
 						} else
 							if(cpf.isEmpty() || cpf.length() < 12 || cpf.length() > 14) {
-								return ("Senha inválida!");
+								return ("CPF inválido!");
 							} else
 								if(tel.isEmpty() || tel.length() < 7) {
-									return ("Senha inválida!");
+									return ("Telefone inválido!");
 								} else
 									if(celular.isEmpty() || celular.length() < 10 || celular.length() >= 12) {
-										return ("Senha inválida!");
+										return ("Celular inválido!");
 									} else
 										if(tipo_sangue.isEmpty() || tipo_sangue.length() < 2 || tipo_sangue.length() > 2) {
-											return ("Senha inválida!");
+											return ("Tipo Sanguíneo inválido!");
 										} else
 											if(regiao.isEmpty() || regiao.length() < 2) {
-												return ("Senha inválida!");
+												return ("Região inválida!");
 											} else
 												if(endereco.isEmpty() || endereco.length() < 7) {
-													return ("Senha inválida!");
+													return ("Endereço inválido!");
 												} else 
 													if(peso < 50) {
-														return ("Senha inválida!");
+														return ("Peso inválido!");
 													} else
 														if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
-															return ("Senha inválida!");
+															return ("Doação inválida!");
+														} else {
+															Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
+															boolean result = CRUDDoador.inserirDoador(doador);
+															if (result == true)
+																return ("Cadastro realizado com sucesso!");
+															else
+																return ("Error ao Cadastrar Usuário");
 														}
-		
-		Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
-		
-		return ("Cadastro realizado com sucesso!");
 	}
 	
 }

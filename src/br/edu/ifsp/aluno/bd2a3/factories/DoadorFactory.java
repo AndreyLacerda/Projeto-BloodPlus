@@ -7,7 +7,7 @@ public class DoadorFactory {
 
 	public static String getDoador(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel, String celular,
 			String tipo_sangue, String regiao, String endereco, float peso, boolean sangue, boolean rim, boolean figado,
-			boolean medula, boolean pulmao, boolean pancreas, boolean ativo) {
+			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) {
 		
 		String ano_nasc1 = dt_nasc.substring(10, 4);
 		int ano_nasc = Integer.parseInt(ano_nasc1);
@@ -50,14 +50,29 @@ public class DoadorFactory {
 													} else
 														if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
 															return ("Doação inválida!");
-														} else {
-															Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
-															boolean result = CRUDDoador.inserirDoador(doador);
-															if (result == true)
-																return ("Cadastro realizado com sucesso!");
-															else
-																return ("Error ao Cadastrar Usuário");
-														}
+														} else 
+															if(aids == true) {
+																return ("Você possui um requisito inválido.");
+															} else
+																if(hepatite11 == true) {
+																	return ("Você possui um requisito inválido.");
+																} else
+																	if(htlv1ou2 == true) {
+																		return ("Você possui um requisito inválido.");
+																	} else 
+																		if(hepatiteBouC == true) {
+																			return ("Você possui um requisito inválido.");
+																		} else
+																			if(chagas == true) {
+																				return ("Você possui um requisito inválido.");
+																			} else {
+																				Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
+																				boolean result = CRUDDoador.inserirDoador(doador);
+																				if (result == true)
+																					return ("Cadastro realizado com sucesso!");
+																				else
+																					return ("Error ao Cadastrar Usuário");
+																				}
 	}
 	
 }

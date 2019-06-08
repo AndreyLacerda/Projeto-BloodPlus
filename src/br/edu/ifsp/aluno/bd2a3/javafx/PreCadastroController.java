@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -19,12 +20,28 @@ public class PreCadastroController implements Initializable{
 		
 	}
 	
-	public void doadorEvento(ActionEvent event) {
-		
+	public void doadorEvento(ActionEvent event) throws IOException {
+		((Node)event.getSource()).getScene().getWindow().hide();
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml"));
+		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
 	
-	public void receptorEvento(ActionEvent event) {
-		
+	public void receptorEvento(ActionEvent event) throws IOException {
+		((Node)event.getSource()).getScene().getWindow().hide();
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml"));
+		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
 
 	public void instEvento(ActionEvent event) {

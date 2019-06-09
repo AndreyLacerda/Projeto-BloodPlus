@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.bd2a3.factories;
 
+import java.sql.SQLException;
+
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorComum;
 import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
 
@@ -8,7 +10,7 @@ public class ReceptorComumFactory {
 	public static String buildarReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf,
 			String tel, String celular, float peso, String tipo_sangue, boolean sangue, boolean rim, boolean figado,
 			boolean medula, boolean pulmao, boolean pancreas, boolean ativo,
-			String regiao, String endereco, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) {
+			String regiao, String endereco, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) throws SQLException {
 		
 		String ano_nasc1 = dt_nasc.substring(10, 4);
 		int ano_nasc = Integer.parseInt(ano_nasc1);
@@ -66,8 +68,10 @@ public class ReceptorComumFactory {
 																		} else {
 																			ReceptorComum receptorC = new ReceptorComum(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, peso, tipo_sangue, sangue, rim, figado, medula, pulmao, pancreas, ativo, regiao, endereco);
 																			boolean result = CRUDReceptorComum.inserirReceptor(receptorC);
-																			if (result == true)
+																			if (result == true) {
+																				MatchComumFactory.criarMatchReceptor(receptorC);
 																				return ("Cadastro realizado com sucesso!");
+																			}
 																			else
 																				return ("Error ao Cadastrar Usuário");
 																			}

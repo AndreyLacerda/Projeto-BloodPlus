@@ -2,10 +2,12 @@ package br.edu.ifsp.aluno.bd2a3.javafx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import br.edu.ifsp.aluno.bd2a3.factories.DoadorFactory;
+import br.edu.ifsp.aluno.bd2a3.factories.MatchComumFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.ReceptorComumFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.ReceptorJuridicoFactory;
 import javafx.collections.FXCollections;
@@ -25,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CadastroComumController implements Initializable{
+public class CadastroComumController{
 	
 	@FXML
 	private Label label1;
@@ -96,9 +98,9 @@ public class CadastroComumController implements Initializable{
 	@FXML
 	private Label err;
 	
-	ObservableList list1 = FXCollections.observableArrayList();
+	ObservableList<String> list1 = FXCollections.observableArrayList();
 	
-	ObservableList list2 = FXCollections.observableArrayList();
+	ObservableList<String> list2 = FXCollections.observableArrayList();
 	
 	@FXML
 	private ChoiceBox<String> regiao;
@@ -108,11 +110,10 @@ public class CadastroComumController implements Initializable{
 	
 	@FXML
 	public void initialize() {
-		loadData1();
-		loadData2();
+		loadData();
 	}
 	
-	private void loadData1() {
+	private void loadData() {
 		list1.removeAll(list1);
 		String a = "Norte";
 		String b = "Sul";
@@ -126,18 +127,15 @@ public class CadastroComumController implements Initializable{
 		String j = "Sudeste";
 		list1.addAll(a, b, c, d, e, f, g, h, i, j);
 		regiao.getItems().addAll(list1);
-	}
-	
-	private void loadData2() {
 		list2.removeAll(list2);
-		String a = "A+";
-		String b = "A-";
-		String c = "B+";
-		String d = "B-";
-		String e = "AB+";
-		String f = "AB-";
-		String g = "O+";
-		String h = "O-";
+		a = "A+";
+		b = "A-";
+		c = "B+";
+		d = "B-";
+		e = "AB+";
+		f = "AB-";
+		g = "O+";
+		h = "O-";
 		list2.addAll(a, b, c, d, e, f, g, h);
 		tipo_sangue.getItems().addAll(list2);
 	}
@@ -145,6 +143,7 @@ public class CadastroComumController implements Initializable{
 	public void setLabels(String valor1, String valor2) {
 		label1.setText(valor1);
 		label2.setText(valor2);
+		regiao = null;
 	}
 	
 	public void setLabelInst(String valor) {
@@ -162,17 +161,29 @@ public class CadastroComumController implements Initializable{
 		stage.show();
 	}
 	
-	public void confirmarCadastro(ActionEvent event) {
-		String result = null;
+	public void confirmarCadastro(ActionEvent event) throws SQLException {
+		String result = "a";
+		String regiaoString = regiao.getValue();
+		String sanguetring = tipo_sangue.getValue();
 		try {
-			if (label1.getText().equals("Cadastro de Doador")){
-				result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
-			} else
-				if (label1.getText().equals("Cadastro de Receptor")){
-					result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
+			if (label1.getText() != null && label1.getText().equals("Cadastro de Doador")){
+				if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+					result = "Por favor preencha todos os campos!";
+				} else {
+					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
+				}
+		} else
+				if (label1.getText() != null && label1.getText().equals("Cadastro de Receptor")){
+					if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+						result = "Por favor preencha todos os campos!";
+					} else
+						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				} else 
-					if (label1.getText().equals("Cadastro de Instituição")){
-						result = ReceptorJuridicoFactory.buildarReceptorJuridico(email.getText(), senha.getText(), nome.getText(), cpf.getText(), tel.getText(), cel.getText(), regiao.getValue(), endereco.getText(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, tipo_sangue.getValue());
+					if (label1.getText() != null && label1.getText().equals("Cadastro de Instituição")){
+						if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+							result = "Por favor preencha todos os campos!";
+						} else
+							result = ReceptorJuridicoFactory.buildarReceptorJuridico(email.getText(), senha.getText(), nome.getText(), cpf.getText(), tel.getText(), cel.getText(), regiao.getValue(), endereco.getText(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, tipo_sangue.getValue());
 				}
 			if (result.equals("Cadastro realizado com sucesso!")) {
 				((Node)event.getSource()).getScene().getWindow().hide();
@@ -188,15 +199,9 @@ public class CadastroComumController implements Initializable{
 			} else {
 				err.setText(result);
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			err.setText("Por favor preencha todos os campos");
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
+			err.setText("Ops, ocorreu um erro. Tente mais tarde");
 		}
-	}
-	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
 	}
 }

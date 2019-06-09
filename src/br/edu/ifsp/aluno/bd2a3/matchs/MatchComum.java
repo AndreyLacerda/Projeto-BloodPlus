@@ -5,24 +5,24 @@ import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
 
 public class MatchComum {
 	
-	private Doador doador;
-	private ReceptorComum receptor;
+	private String email_doador;
+	private String email_receptor;
 	private String doacao, motivo;
 	private boolean fracasso, sucesso, cancelada, finalizada;
 	
-	public MatchComum(Doador doador, ReceptorComum receptor, String doacao) {
+	public MatchComum(String doador, String receptor, String doacao) {
 		super();
-		this.doador = doador;
-		this.receptor = receptor;
+		this.email_doador = doador;
+		this.email_receptor = receptor;
 		this.doacao = doacao;
 	}
 
-	public Doador getDoador() {
-		return doador;
+	public String getDoador() {
+		return email_doador;
 	}
 
-	public ReceptorComum getReceptor() {
-		return receptor;
+	public String getReceptor() {
+		return email_receptor;
 	}
 
 	public String getDoacao() {

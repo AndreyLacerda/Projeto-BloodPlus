@@ -17,7 +17,7 @@ public class CRUDMatchComum {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String insert = "INSERT INTO MatchComum VALUES ('"+match.getDoador().getEmail()+"', '"+match.getReceptor().getEmail()+"', "
+				String insert = "INSERT INTO MatchComum VALUES ('"+match.getDoador()+"', '"+match.getReceptor()+"', "
 						+ "'"+match.getDoacao()+"', "+match.isFracasso()+", "+match.isSucesso()+", "+match.getMotivo()+", "
 								+ ""+match.isCancelada()+", "+match.isFinalizada()+" )";
 				
@@ -48,7 +48,7 @@ public class CRUDMatchComum {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String delete = "DELETE FROM MatchComum WHERE email_doador ="+match.getDoador().getEmail()+" AND email_receptor = "+match.getReceptor().getEmail()+"";
+				String delete = "DELETE FROM MatchComum WHERE email_doador ="+match.getDoador()+" AND email_receptor = "+match.getReceptor()+"";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
@@ -74,7 +74,7 @@ public class CRUDMatchComum {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String update = "UPDATE MatchComum SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador().getEmail()+" AND email_receptor = "+match.getReceptor().getEmail()+"";
+				String update = "UPDATE MatchComum SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador()+" AND email_receptor = "+match.getReceptor()+"";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(update);

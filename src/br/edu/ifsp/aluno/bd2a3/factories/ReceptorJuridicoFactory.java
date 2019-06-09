@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.bd2a3.factories;
 
+import java.sql.SQLException;
+
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorJuridico;
 import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 
@@ -7,7 +9,7 @@ public class ReceptorJuridicoFactory {
 
 	public static String buildarReceptorJuridico(String email, String senha, String nome_instituição, String cNPJ, String tel1, String tel2,
 			String regiao, String endereco, boolean sangue, boolean rim, boolean figado, boolean medula, boolean pulmao,
-			boolean pancreas, boolean ativo, String main_tipo_sangue) {
+			boolean pancreas, boolean ativo, String main_tipo_sangue) throws SQLException {
 		
 		if (senha.contains(" ") || senha.isEmpty() || senha.length() < 8) {
 			return ("Senha inválida!");
@@ -38,13 +40,12 @@ public class ReceptorJuridicoFactory {
 										} else {
 											ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, rim, figado, medula, pulmao, pancreas, ativo, sangue, main_tipo_sangue);
 											boolean result = CRUDReceptorJuridico.inserirReceptor(receptorJ);
-											if (result == true)
+											if (result == true) {
+												MatchInstFactory.criarMatchReceptor(receptorJ);
 												return ("Cadastro realizado com sucesso!");
+											}
 											else
 												return ("Error ao Cadastrar Usuário");
-										}
-
-		
+										}		
 	}
-	
 }

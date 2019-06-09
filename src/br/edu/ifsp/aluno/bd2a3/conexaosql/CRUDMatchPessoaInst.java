@@ -17,7 +17,7 @@ public class CRUDMatchPessoaInst {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String insert = "INSERT INTO MatchPessoaInst VALUES ('"+match.getDoador().getEmail()+"', '"+match.getReceptor().getEmail()+"', "
+				String insert = "INSERT INTO MatchPessoaInst VALUES ('"+match.getDoador()+"', '"+match.getReceptor()+"', "
 						+ "'"+match.getDoacao()+"', "+match.getMotivo()+", "+match.isFracasso()+", "+match.isSucesso()+", "
 								+ ""+match.isCancelada()+", "+match.isFinalizada()+" )";
 				
@@ -48,7 +48,7 @@ public class CRUDMatchPessoaInst {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String delete = "DELETE FROM MatchPessoaInst WHERE email_doador ="+match.getDoador().getEmail()+" AND email_receptorJuridico = "+match.getReceptor().getEmail()+"";
+				String delete = "DELETE FROM MatchPessoaInst WHERE email_doador ="+match.getDoador()+" AND email_receptorJuridico = "+match.getReceptor()+"";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
@@ -74,7 +74,7 @@ public class CRUDMatchPessoaInst {
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
 			try {
-				String update = "UPDATE MatchPessoaInst SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador().getEmail()+" AND email_receptorJuridico = "+match.getReceptor().getEmail()+"";
+				String update = "UPDATE MatchPessoaInst SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador()+" AND email_receptorJuridico = "+match.getReceptor()+"";
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(update);

@@ -34,7 +34,7 @@ public class MainScreenController {
 	@FXML
 	private TextField pass;
 	
-	ObservableList list = FXCollections.observableArrayList();
+	ObservableList<String> list = FXCollections.observableArrayList();
 	
 	@FXML
 	private ChoiceBox<String> users;

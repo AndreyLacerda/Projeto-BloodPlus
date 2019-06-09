@@ -5,7 +5,7 @@ import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
 
 public class ReceptorComumFactory {
 
-	public static String getReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf,
+	public static String buildarReceptorComum(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf,
 			String tel, String celular, float peso, String tipo_sangue, boolean sangue, boolean rim, boolean figado,
 			boolean medula, boolean pulmao, boolean pancreas, boolean ativo,
 			String regiao, String endereco, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) {

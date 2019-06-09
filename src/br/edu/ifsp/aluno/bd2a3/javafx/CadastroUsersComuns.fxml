@@ -3,56 +3,63 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.CadastroComumController">
+<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="509.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.CadastroComumController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1061.0" prefWidth="266.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1209.0" prefWidth="266.0">
          <children>
-            <Label fx:id="title" layoutX="89.0" layoutY="22.0" text="Label">
+            <Label fx:id="label1" layoutX="46.0" layoutY="22.0" prefHeight="53.0" prefWidth="174.0" text="Cadastro de Receptor">
                <font>
-                  <Font size="36.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="59.0" layoutY="99.0" />
-            <Label layoutX="119.0" layoutY="75.0" text="Email" />
-            <TextField layoutX="59.0" layoutY="160.0" />
-            <Label layoutX="117.0" layoutY="135.0" text="Senha" />
-            <TextField layoutX="61.0" layoutY="221.0" />
-            <Label layoutX="117.0" layoutY="197.0" text="Nome" />
-            <TextField layoutX="61.0" layoutY="282.0" />
-            <Label layoutX="102.0" layoutY="259.0" text="Sobrenome" />
-            <DatePicker layoutX="47.0" layoutY="344.0" />
-            <Label layoutX="82.0" layoutY="321.0" text="Data de Nascimento" />
-            <TextField layoutX="58.0" layoutY="405.0" />
-            <Label layoutX="122.0" layoutY="381.0" text="CPF" />
-            <TextField layoutX="59.0" layoutY="468.0" />
-            <Label layoutX="97.0" layoutY="444.0" text="Telefone Fixo" />
-            <TextField layoutX="63.0" layoutY="528.0" />
-            <Label layoutX="117.0" layoutY="505.0" text="Celular" />
-            <TextField layoutX="63.0" layoutY="584.0" />
-            <Label layoutX="124.0" layoutY="559.0" text="Peso" />
-            <Label layoutX="95.0" layoutY="620.0" text="Tipo Sanguíneo" />
-            <ComboBox layoutX="64.0" layoutY="643.0" prefWidth="150.0" />
-            <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="28.0" layoutY="717.0" mnemonicParsing="false" text="Sangue" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
-            <CheckBox alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="104.0" layoutY="717.0" mnemonicParsing="false" text="Rim" textAlignment="CENTER" />
-            <CheckBox alignment="BOTTOM_LEFT" contentDisplay="TOP" layoutX="27.0" layoutY="753.0" mnemonicParsing="false" text="Fígado" textAlignment="CENTER" />
-            <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="101.0" layoutY="753.0" mnemonicParsing="false" text="Pulmão" textAlignment="CENTER" />
-            <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="167.0" layoutY="753.0" mnemonicParsing="false" text="Pâncreas" textAlignment="CENTER" />
-            <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="170.0" layoutY="717.0" mnemonicParsing="false" text="Medula" textAlignment="CENTER" />
-            <TextField layoutX="63.0" layoutY="824.0" />
-            <Label layoutX="110.0" layoutY="791.0" text="Endereço" />
-            <Label layoutX="116.0" layoutY="859.0" text="Região" />
-            <ChoiceBox layoutX="62.0" layoutY="885.0" prefWidth="150.0" />
-            <Button layoutX="80.0" layoutY="938.0" mnemonicParsing="false" text="Confirmar Cadastro" />
-            <Button fx:id="preCadastro" layoutX="71.0" layoutY="1003.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à tela anterior" />
-            <Label layoutX="122.0" layoutY="685.0" text="Label" />
+            <CheckBox fx:id="hiv" layoutX="57.0" layoutY="118.0" mnemonicParsing="false" text="HIV" />
+            <CheckBox fx:id="hepatite" layoutX="148.0" layoutY="118.0" mnemonicParsing="false" text="Hepatite  B/C" />
+            <CheckBox fx:id="htvl" layoutX="56.0" layoutY="167.0" mnemonicParsing="false" text="HTLV 1/2" />
+            <CheckBox fx:id="chagas" layoutX="148.0" layoutY="167.0" mnemonicParsing="false" text="Chagas" />
+            <TextField fx:id="email" layoutX="30.0" layoutY="224.0" prefHeight="25.0" prefWidth="212.0" />
+            <Label layoutX="119.0" layoutY="199.0" text="Email" />
+            <Label layoutX="117.0" layoutY="259.0" text="Senha" />
+            <PasswordField fx:id="senha" layoutX="29.0" layoutY="286.0" prefHeight="25.0" prefWidth="212.0" />
+            <TextField fx:id="nome" layoutX="28.0" layoutY="345.0" prefHeight="25.0" prefWidth="213.0" />
+            <Label layoutX="117.0" layoutY="321.0" text="Nome" />
+            <TextField fx:id="sobrenome" layoutX="28.0" layoutY="406.0" prefHeight="25.0" prefWidth="213.0" />
+            <Label layoutX="102.0" layoutY="383.0" text="Sobrenome" />
+            <DatePicker fx:id="dt_nasc" layoutX="47.0" layoutY="468.0" />
+            <Label layoutX="82.0" layoutY="445.0" text="Data de Nascimento" />
+            <TextField fx:id="cpf" layoutX="34.0" layoutY="529.0" prefHeight="25.0" prefWidth="197.0" />
+            <Label layoutX="122.0" layoutY="505.0" text="CPF" />
+            <TextField fx:id="tel" layoutX="40.0" layoutY="592.0" prefHeight="25.0" prefWidth="192.0" />
+            <Label layoutX="97.0" layoutY="568.0" text="Telefone Fixo" />
+            <TextField fx:id="cel" layoutX="41.0" layoutY="652.0" prefHeight="25.0" prefWidth="188.0" />
+            <Label layoutX="117.0" layoutY="629.0" text="Celular" />
+            <TextField fx:id="peso" layoutX="42.0" layoutY="708.0" prefHeight="25.0" prefWidth="186.0" />
+            <Label layoutX="124.0" layoutY="683.0" text="Peso" />
+            <Label layoutX="95.0" layoutY="744.0" text="Tipo Sanguíneo" />
+            <ChoiceBox fx:id="tipo_sangue" layoutX="58.0" layoutY="772.0" prefWidth="150.0" />
+            <CheckBox fx:id="sangue" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="28.0" layoutY="841.0" mnemonicParsing="false" text="Sangue" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+            <CheckBox fx:id="rim" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="104.0" layoutY="841.0" mnemonicParsing="false" text="Rim" textAlignment="CENTER" />
+            <CheckBox fx:id="figado" alignment="BOTTOM_LEFT" contentDisplay="TOP" layoutX="27.0" layoutY="877.0" mnemonicParsing="false" text="Fígado" textAlignment="CENTER" />
+            <CheckBox fx:id="pulmao" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="101.0" layoutY="877.0" mnemonicParsing="false" text="Pulmão" textAlignment="CENTER" />
+            <CheckBox fx:id="pancreas" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="167.0" layoutY="877.0" mnemonicParsing="false" text="Pâncreas" textAlignment="CENTER" />
+            <CheckBox fx:id="medula" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="170.0" layoutY="841.0" mnemonicParsing="false" text="Medula" textAlignment="CENTER" />
+            <Label layoutX="110.0" layoutY="915.0" text="Endereço" />
+            <Label layoutX="118.0" layoutY="1024.0" text="Região" />
+            <TextArea fx:id="endereco" layoutX="25.0" layoutY="936.0" prefHeight="77.0" prefWidth="215.0" promptText="CEP:                                          Rua:                                             Bairro:                                                 Número: " />
+            <ChoiceBox fx:id="regiao" layoutX="58.0" layoutY="1041.0" prefWidth="150.0" />
+            <Button layoutX="77.0" layoutY="1087.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro" />
+            <Button fx:id="preCadastro" layoutX="48.0" layoutY="1165.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à seleção de cadastro" />
+            <Label fx:id="label2" layoutX="91.0" layoutY="812.0" prefHeight="17.0" prefWidth="93.0" text="Procura Receber:" />
+            <Label layoutX="20.0" layoutY="87.0" text="Já possuiu/possui alguma dessas doenças:" />
+            <Label fx:id="err" layoutX="44.0" layoutY="1112.0" prefHeight="17.0" prefWidth="199.0" textAlignment="CENTER" textFill="RED" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

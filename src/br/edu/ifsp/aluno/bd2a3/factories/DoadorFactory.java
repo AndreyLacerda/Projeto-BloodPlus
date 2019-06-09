@@ -5,7 +5,7 @@ import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
 
 public class DoadorFactory {
 
-	public static String getDoador(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel, String celular,
+	public static String buildarDoador(String email, String senha, String nome, String sobrenome, String dt_nasc, String cpf, String tel, String celular,
 			String tipo_sangue, String regiao, String endereco, float peso, boolean sangue, boolean rim, boolean figado,
 			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) {
 		

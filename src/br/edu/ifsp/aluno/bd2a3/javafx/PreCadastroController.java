@@ -24,8 +24,9 @@ public class PreCadastroController implements Initializable{
 		((Node)event.getSource()).getScene().getWindow().hide();
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml"));
+		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
+		cadastroComum.setLabels("Cadastro de Doador", "Procura Doar:");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -36,16 +37,26 @@ public class PreCadastroController implements Initializable{
 		((Node)event.getSource()).getScene().getWindow().hide();
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml"));
+		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
+		cadastroComum.setLabels("Cadastro de Receptor", "Procura Receber:");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
 	}
 
-	public void instEvento(ActionEvent event) {
-	
+	public void instEvento(ActionEvent event) throws IOException {
+		((Node)event.getSource()).getScene().getWindow().hide();
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		ScrollPane root = loader.load(getClass().getResource("CadastroUserInst.fxml").openStream());
+		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
+		cadastroComum.setLabelInst ("Procura Receber:");
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
 	
 	public void mainScreen(ActionEvent event) throws IOException {

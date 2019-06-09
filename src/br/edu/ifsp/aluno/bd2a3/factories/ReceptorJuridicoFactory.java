@@ -5,7 +5,7 @@ import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 
 public class ReceptorJuridicoFactory {
 
-	public static String getReceptorJuridico(String email, String senha, String nome_instituição, String cNPJ, String tel1, String tel2,
+	public static String buildarReceptorJuridico(String email, String senha, String nome_instituição, String cNPJ, String tel1, String tel2,
 			String regiao, String endereco, boolean sangue, boolean rim, boolean figado, boolean medula, boolean pulmao,
 			boolean pancreas, boolean ativo, String main_tipo_sangue) {
 		

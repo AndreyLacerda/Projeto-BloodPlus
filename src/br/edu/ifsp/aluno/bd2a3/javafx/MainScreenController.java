@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
@@ -19,6 +18,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MainScreenController {
@@ -40,7 +40,7 @@ public class MainScreenController {
 	private ChoiceBox<String> users;
 	
 	@FXML
-	private void initialize(){
+	public void initialize(){
 		loadData();
 		users.setValue("Doador");
 	}
@@ -52,6 +52,11 @@ public class MainScreenController {
 		String c = "Instituição";
 		list.addAll(a, b, c);
 		users.getItems().addAll(list);
+	}
+	
+	public void setErr(String valor) {
+		error.setText(valor);
+		error.setTextFill(Color.web("#14a71b"));
 	}
 	
 	public void Login(ActionEvent event) throws SQLException {

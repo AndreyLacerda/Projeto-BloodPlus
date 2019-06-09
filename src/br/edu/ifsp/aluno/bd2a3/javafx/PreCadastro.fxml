@@ -10,7 +10,7 @@
       <Button fx:id="doador" layoutX="66.0" layoutY="126.0" mnemonicParsing="false" onAction="#doadorEvento" prefHeight="48.0" prefWidth="135.0" text="Doador" />
       <Button fx:id="receptor" layoutX="66.0" layoutY="196.0" mnemonicParsing="false" onAction="#receptorEvento" prefHeight="48.0" prefWidth="135.0" text="Receptor" />
       <Button fx:id="insti" layoutX="66.0" layoutY="265.0" mnemonicParsing="false" onAction="#instEvento" prefHeight="48.0" prefWidth="135.0" text="Instituição Médica" />
-      <Label layoutX="71.0" layoutY="70.0" prefHeight="35.0" prefWidth="125.0" text="Você é um?">
+      <Label layoutX="47.0" layoutY="73.0" prefHeight="35.0" prefWidth="173.0" text="Tipo de Usuário:">
          <font>
             <Font size="24.0" />
          </font>

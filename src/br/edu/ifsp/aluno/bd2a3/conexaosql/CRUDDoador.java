@@ -148,6 +148,32 @@ public class CRUDDoador {
 		} else {
 			return null;
 		}
+	}
+	
+	public static ResultSet selectDoador2 (String campo1, String valor1, String campo2, String valor2) {
+		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
+		Statement stmt = null;
 		
+		boolean testeConnection;
+		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+			try{
+				Connection conn = DriverManager.getConnection(connectionUrl);
+				String select = "SELECT * FROM Doador WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(select);
+				
+				return rs;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return null;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return null;
+			}
+		} else {
+			return null;
+		}	
 	}
 }

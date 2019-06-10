@@ -43,7 +43,7 @@ public class MatchComumFactory {
 			}
 		}
 		if (doador.isSangue() == true) {
-			ResultSet rs = CRUDReceptorComum.selectReceptor("sangue", "1");
+			ResultSet rs = CRUDReceptorComum.selectReceptor2("sangue", "1", "tipo_sangue", doador.getTipo_sangue());
 			while (rs.next() == true) {
 				MatchComum match = new MatchComum(doador.getEmail() ,rs.getString(1), "Sangue");
 			}
@@ -82,7 +82,7 @@ public class MatchComumFactory {
 			}
 		}
 		if (receptor.isSangue() == true) {
-			ResultSet rs = CRUDDoador.selectDoador("sangue", "1");
+			ResultSet rs = CRUDDoador.selectDoador2("sangue", "1", "tipo_sangue", receptor.getTipo_sangue());
 			while (rs.next() == true) {
 				MatchComum match = new MatchComum(rs.getString(1), receptor.getEmail(), "Sangue");
 			}

@@ -43,7 +43,7 @@ public class MatchInstFactory {
 			}
 		}
 		if (doador.isSangue() == true) {
-			ResultSet rs = CRUDReceptorJuridico.selectReceptor("sangue", "1");
+			ResultSet rs = CRUDReceptorJuridico.selectReceptor2("sangue", "1", "tipo_sangue", doador.getTipo_sangue());
 			while (rs.next() == true) {
 				MatchPessoaInst match = new MatchPessoaInst(doador.getEmail() ,rs.getString(1), "Sangue");
 			}
@@ -82,7 +82,7 @@ public class MatchInstFactory {
 			}
 		}
 		if (receptor.isSangue() == true) {
-			ResultSet rs = CRUDDoador.selectDoador("sangue", "1");
+			ResultSet rs = CRUDDoador.selectDoador2("sangue", "1", "tipo_sangue", receptor.getMain_tipo_sangue());
 			while (rs.next() == true) {
 				MatchPessoaInst match = new MatchPessoaInst(rs.getString(1), receptor.getEmail(), "Sangue");
 			}

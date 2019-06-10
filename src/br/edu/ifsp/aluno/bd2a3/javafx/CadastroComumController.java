@@ -163,24 +163,22 @@ public class CadastroComumController{
 	
 	public void confirmarCadastro(ActionEvent event) throws SQLException {
 		String result = "a";
-		String regiaoString = regiao.getValue();
-		String sanguetring = tipo_sangue.getValue();
 		try {
 			if (label1.getText() != null && label1.getText().equals("Cadastro de Doador")){
-				if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+				if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
 					result = "Por favor preencha todos os campos!";
 				} else {
 					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				}
 		} else
 				if (label1.getText() != null && label1.getText().equals("Cadastro de Receptor")){
-					if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+					if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
 						result = "Por favor preencha todos os campos!";
 					} else
 						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				} else 
 					if (label1.getText() != null && label1.getText().equals("Cadastro de Instituição")){
-						if (regiaoString == null || sanguetring == null || dt_nasc == null || peso == null) {
+						if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
 							result = "Por favor preencha todos os campos!";
 						} else
 							result = ReceptorJuridicoFactory.buildarReceptorJuridico(email.getText(), senha.getText(), nome.getText(), cpf.getText(), tel.getText(), cel.getText(), regiao.getValue(), endereco.getText(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, tipo_sangue.getValue());

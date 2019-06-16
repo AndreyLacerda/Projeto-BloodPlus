@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <Button fx:id="voltar" layoutX="110.0" layoutY="451.0" mnemonicParsing="false" text="Voltar" />
+      <Button fx:id="finalizar" layoutX="83.0" layoutY="377.0" mnemonicParsing="false" text="Finalizar o Match" />
+      <Label fx:id="parceiro" layoutX="92.0" layoutY="46.0" text="Label">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nome" layoutX="122.0" layoutY="139.0" text="Label" />
+      <Label fx:id="dataNasc" layoutX="122.0" layoutY="166.0" text="Label" />
+      <Label fx:id="endereco" layoutX="122.0" layoutY="194.0" text="Label" />
+      <Label fx:id="Nome1" layoutX="74.0" layoutY="110.0" text="Infomações do Usuário" />
+      <Label layoutX="76.0" layoutY="281.0" text="Infomações do Match" />
+      <Label fx:id="regiao" layoutX="122.0" layoutY="228.0" text="Label" />
+      <Label fx:id="doacao" layoutX="122.0" layoutY="312.0" text="Label" />
+   </children>
+</AnchorPane>

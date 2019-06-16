@@ -1,13 +1,10 @@
 package br.edu.ifsp.aluno.bd2a3.javafx;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
 import br.edu.ifsp.aluno.bd2a3.factories.DoadorFactory;
-import br.edu.ifsp.aluno.bd2a3.factories.MatchComumFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.ReceptorComumFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.ReceptorJuridicoFactory;
 import javafx.collections.FXCollections;
@@ -15,9 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -27,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CadastroComumController{
+public class CadastroComumController {
 	
 	@FXML
 	private Label label1;
@@ -109,6 +105,12 @@ public class CadastroComumController{
 	private ChoiceBox<String> tipo_sangue;
 	
 	@FXML
+	private Button confirmar;
+	
+	@FXML
+	private Button preTela;
+	
+	@FXML
 	public void initialize() {
 		loadData();
 	}
@@ -126,7 +128,7 @@ public class CadastroComumController{
 		String i = "Nordeste";
 		String j = "Sudeste";
 		list1.addAll(a, b, c, d, e, f, g, h, i, j);
-		regiao.getItems().addAll(list1);
+		regiao.setItems(list1);
 		list2.removeAll(list2);
 		a = "A+";
 		b = "A-";
@@ -137,7 +139,7 @@ public class CadastroComumController{
 		g = "O+";
 		h = "O-";
 		list2.addAll(a, b, c, d, e, f, g, h);
-		tipo_sangue.getItems().addAll(list2);
+		tipo_sangue.setItems(list2);
 	}
 	
 	public void setLabels(String valor1, String valor2) {
@@ -151,10 +153,10 @@ public class CadastroComumController{
 	}
 	
 	public void PreCadastro(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) preTela.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("PreCadastro.fxml"));
+		PreCadastroController preCadastro = (PreCadastroController)loader.getController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -165,27 +167,26 @@ public class CadastroComumController{
 		String result = "a";
 		try {
 			if (label1.getText() != null && label1.getText().equals("Cadastro de Doador")){
-				if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
+				if (regiao == null || tipo_sangue == null) {
 					result = "Por favor preencha todos os campos!";
 				} else {
 					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				}
 		} else
 				if (label1.getText() != null && label1.getText().equals("Cadastro de Receptor")){
-					if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
+					if (regiao == null || tipo_sangue == null) {
 						result = "Por favor preencha todos os campos!";
 					} else
 						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				} else 
 					if (label1.getText() != null && label1.getText().equals("Cadastro de Instituição")){
-						if (regiao == null || tipo_sangue == null || dt_nasc == null || peso == null) {
+						if (regiao == null || tipo_sangue == null) {
 							result = "Por favor preencha todos os campos!";
 						} else
 							result = ReceptorJuridicoFactory.buildarReceptorJuridico(email.getText(), senha.getText(), nome.getText(), cpf.getText(), tel.getText(), cel.getText(), regiao.getValue(), endereco.getText(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, tipo_sangue.getValue());
 				}
 			if (result.equals("Cadastro realizado com sucesso!")) {
-				((Node)event.getSource()).getScene().getWindow().hide();
-				Stage stage = new Stage();
+				Stage stage = (Stage) confirmar.getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 				MainScreenController mainScreen = (MainScreenController)loader.getController();

@@ -1,6 +1,7 @@
 package br.edu.ifsp.aluno.bd2a3.javafx;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
@@ -12,7 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -24,6 +25,9 @@ import javafx.stage.Stage;
 public class MainScreenController {
 	@FXML
 	private Hyperlink cadastro;
+	
+	@FXML
+	private Button login;
 	
 	@FXML
 	private Label error;
@@ -59,32 +63,61 @@ public class MainScreenController {
 		error.setTextFill(Color.web("#14a71b"));
 	}
 	
-	public void Login(ActionEvent event) throws SQLException {
+	public void Login(ActionEvent event) throws SQLException, IOException {
 		String user = users.getValue();
 		if (user.equals("Doador")) {
-			if (CRUDDoador.loginDoador(email.getText(), pass.getText()).next() == false) {
+			ResultSet rs = CRUDDoador.loginDoador(email.getText(), pass.getText());
+			if (rs.next() == false) {
 				error.setText("Email ou senha inválidos");
+			} else {
+				Stage stage = (Stage) login.getScene().getWindow();
+				FXMLLoader loader = new FXMLLoader();
+				Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+				TelaUserController telaUser = (TelaUserController)loader.getController();
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
 			}
 		}
 		else
 			if (user.equals("Receptor")) {
-				if(CRUDReceptorComum.loginReceptor(email.getText(), pass.getText()).next() == false) {
+				ResultSet rs = CRUDReceptorComum.loginReceptor(email.getText(), pass.getText());
+				if(rs.next() == false) {
 					error.setText("Email ou senha inválidos");
+				} else {
+					Stage stage = (Stage) login.getScene().getWindow();
+					FXMLLoader loader = new FXMLLoader();
+					Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+					TelaUserController telaUser = (TelaUserController)loader.getController();
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.show();
 				}
 			}
 			else
 				if (user.equals("Instituição")) {
-					if(CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText()).next() == false) {
+					ResultSet rs = CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText());
+					if(rs.next() == false) {
 						error.setText("Email ou senha inválidos");
+					} else {
+						Stage stage = (Stage) login.getScene().getWindow();
+						FXMLLoader loader = new FXMLLoader();
+						Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+						TelaUserController telaUser = (TelaUserController)loader.getController();
+						Scene scene = new Scene(root);
+						stage.setScene(scene);
+						stage.setResizable(false);
+						stage.show();
 					}
 				}
 				else
-					System.out.println("Deu ruim!");
+					System.out.println("Ocorreu um erro. Por favor tente novamente mais tarde.");
 	}
 	
 	public void cadastro(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) cadastro.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("PreCadastro.fxml"));
 		PreCadastroController preCadastro = (PreCadastroController)loader.getController();

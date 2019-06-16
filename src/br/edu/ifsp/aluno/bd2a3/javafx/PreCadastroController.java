@@ -1,28 +1,33 @@
 package br.edu.ifsp.aluno.bd2a3.javafx;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class PreCadastroController implements Initializable{
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	}
+public class PreCadastroController {
+	
+	@FXML
+	public Button doador;
+	
+	@FXML
+	public Button receptor;
+	
+	@FXML
+	public Button insti;
+	
+	@FXML
+	public Button voltar;
 	
 	public void doadorEvento(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) doador.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -34,8 +39,7 @@ public class PreCadastroController implements Initializable{
 	}
 	
 	public void receptorEvento(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) receptor.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -47,8 +51,7 @@ public class PreCadastroController implements Initializable{
 	}
 
 	public void instEvento(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) insti.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUserInst.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -60,10 +63,10 @@ public class PreCadastroController implements Initializable{
 	}
 	
 	public void mainScreen(ActionEvent event) throws IOException {
-		((Node)event.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+		Stage stage = (Stage) voltar.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));
+		MainScreenController main = (MainScreenController)loader.getController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);

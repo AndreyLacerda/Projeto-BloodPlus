@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.CadastroComumController">
+<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.CadastroComumController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="888.0" prefWidth="266.0">
          <children>
@@ -44,8 +44,8 @@
             <TextArea fx:id="endereco" layoutX="29.0" layoutY="620.0" prefHeight="77.0" prefWidth="215.0" promptText="CEP:                                          Rua:                                             Bairro:                                                 Número: " />
             <Label layoutX="121.0" layoutY="708.0" text="Região" />
             <ChoiceBox fx:id="regiao" layoutX="62.0" layoutY="725.0" prefWidth="150.0" />
-            <Button layoutX="81.0" layoutY="771.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro" />
-            <Button fx:id="preCadastro" layoutX="52.0" layoutY="849.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à seleção de cadastro" />
+            <Button fx:id="confirmar" layoutX="81.0" layoutY="771.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro" />
+            <Button fx:id="preTela" layoutX="52.0" layoutY="849.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à seleção de cadastro" />
             <Label fx:id="label2" layoutX="94.0" layoutY="497.0" prefHeight="17.0" prefWidth="94.0" text="Procura Receber:" />
             <Label fx:id="err" layoutX="48.0" layoutY="796.0" prefHeight="17.0" prefWidth="201.0" text="Por favor preencha todos os campos" textAlignment="CENTER" textFill="#f80000" />
          </children></AnchorPane>

@@ -176,5 +176,32 @@ public class CRUDReceptorJuridico {
 			return null;
 		}
 	}
+	
+	public static ResultSet selectReceptor3 (String campo, String valor) {
+		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
+		Statement stmt = null;
+		
+		boolean testeConnection;
+		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+			try{
+				Connection conn = DriverManager.getConnection(connectionUrl);
+				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo+" = '"+valor+"';";
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(select);
+				
+				return rs;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return null;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
 
 }

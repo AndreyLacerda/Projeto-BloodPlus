@@ -17,35 +17,38 @@ public class ReceptorJuridicoFactory {
 			if(!email.contains("@") || email.length() < 4 || email.isEmpty()) {
 				return ("Email inválido!");
 			} else
-				if(nome_instituição.isEmpty() || nome_instituição.length() < 2) {
-					return ("Nome inválido!");
+				if (CRUDReceptorJuridico.selectReceptor3("email", email).next() == true) {
+					return ("Email Já Cadastrado!");
 				} else
-					if(cNPJ.isEmpty() || cNPJ.length() < 17 || cNPJ.length() > 18) {
-						return ("CNPJ inválido!");
+					if(nome_instituição.isEmpty() || nome_instituição.length() < 2) {
+						return ("Nome inválido!");
 					} else
-						if(tel1.isEmpty() || tel1.length() < 7 || tel1.length() > 8) {
-							return ("Telefone 1 inválido!");
+						if(cNPJ.isEmpty() || cNPJ.length() < 17 || cNPJ.length() > 18) {
+							return ("CNPJ inválido!");
 						} else
-							if(tel2.isEmpty() || tel2.length() < 7 || tel2.length() > 8) {
-								return ("Telefone 2 inválido!");
+							if(tel1.isEmpty() || tel1.length() < 7 || tel1.length() > 8) {
+								return ("Telefone 1 inválido!");
 							} else
-								if(regiao.isEmpty() || regiao.length() < 2) {
-									return ("Região inválida!");
+								if(tel2.isEmpty() || tel2.length() < 7 || tel2.length() > 8) {
+									return ("Telefone 2 inválido!");
 								} else
-									if(endereco.isEmpty() || endereco.length() < 7) {
-										return ("Endereço inválida!");
-									} else 
-										if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
-											return ("Pedido inválido!");
-										} else {
-											ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, rim, figado, medula, pulmao, pancreas, ativo, sangue, main_tipo_sangue);
-											boolean result = CRUDReceptorJuridico.inserirReceptor(receptorJ);
-											if (result == true) {
-												MatchInstFactory.criarMatchReceptor(receptorJ);
-												return ("Cadastro realizado com sucesso!");
-											}
-											else
-												return ("Error ao Cadastrar Usuário");
-										}		
+									if(regiao.isEmpty() || regiao.length() < 2) {
+										return ("Região inválida!");
+									} else
+										if(endereco.isEmpty() || endereco.length() < 7) {
+											return ("Endereço inválida!");
+										} else 
+											if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
+												return ("Pedido inválido!");
+											} else {
+												ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, rim, figado, medula, pulmao, pancreas, ativo, sangue, main_tipo_sangue);
+												boolean result = CRUDReceptorJuridico.inserirReceptor(receptorJ);
+												if (result == true) {
+													MatchInstFactory.criarMatchReceptor(receptorJ);
+													return ("Cadastro realizado com sucesso!");
+												}
+												else
+													return ("Error ao Cadastrar Usuário");
+											}		
 	}
 }

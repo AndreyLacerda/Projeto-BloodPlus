@@ -56,7 +56,7 @@ public class CadastroComumController {
 	private TextField cpf;
 	
 	@FXML
-	private DatePicker dt_nasc;
+	private TextField dt_nasc;
 	
 	@FXML
 	private TextArea endereco;
@@ -145,7 +145,6 @@ public class CadastroComumController {
 	public void setLabels(String valor1, String valor2) {
 		label1.setText(valor1);
 		label2.setText(valor2);
-		regiao = null;
 	}
 	
 	public void setLabelInst(String valor) {
@@ -167,17 +166,17 @@ public class CadastroComumController {
 		String result = "a";
 		try {
 			if (label1.getText() != null && label1.getText().equals("Cadastro de Doador")){
-				if (regiao == null || tipo_sangue == null) {
+				if (regiao == null || tipo_sangue == null || peso == null || dt_nasc == null) {
 					result = "Por favor preencha todos os campos!";
 				} else {
-					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
+					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getText(), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				}
 		} else
 				if (label1.getText() != null && label1.getText().equals("Cadastro de Receptor")){
-					if (regiao == null || tipo_sangue == null) {
-						result = "Por favor preencha todos os campos!";
+					if (regiao == null || tipo_sangue == null || peso == null || dt_nasc == null) {
+						result = "Por favor preencha todos os campos de forma correta!";
 					} else
-						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
+						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getText(), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				} else 
 					if (label1.getText() != null && label1.getText().equals("Cadastro de Instituição")){
 						if (regiao == null || tipo_sangue == null) {

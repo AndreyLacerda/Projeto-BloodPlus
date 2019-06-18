@@ -11,7 +11,7 @@ public class DoadorFactory {
 			String tipo_sangue, String regiao, String endereco, float peso, boolean sangue, boolean rim, boolean figado,
 			boolean medula, boolean pulmao, boolean pancreas, boolean ativo, boolean aids, boolean hepatite11, boolean htlv1ou2, boolean chagas, boolean hepatiteBouC) throws SQLException {
 		
-		String ano_nasc1 = dt_nasc.substring(10, 4);
+		String ano_nasc1 = dt_nasc.substring(6, 10);
 		int ano_nasc = Integer.parseInt(ano_nasc1);
 		
 		if (senha.contains(" ") || senha.isEmpty() || senha.length() < 8 || senha == null) {
@@ -20,64 +20,67 @@ public class DoadorFactory {
 			if(!email.contains("@") || email.length() < 4 || email.isEmpty() || email == null) {
 				return ("Email inválido!");
 			} else
-				if(nome.isEmpty() || nome.length() < 2 || nome == null) {
-					return ("Nome inválido!");
-				} else
-					if(sobrenome.isEmpty() || sobrenome.length() < 2 || sobrenome == null) {
-						return ("Sobrenome inválido!");
+				if (CRUDDoador.selectDoador3("email", email).next() == true) {
+					return ("Email Já Cadastrado!");
+				} else	
+					if(nome.isEmpty() || nome.length() < 2 || nome == null) {
+						return ("Nome inválido!");
 					} else
-						if(dt_nasc.isEmpty() || ano_nasc < 2003 || dt_nasc.length() < 4 || dt_nasc.length() > 10 || dt_nasc == null) {
-							return ("Data de Nascimento inválida!");
+						if(sobrenome.isEmpty() || sobrenome.length() < 2 || sobrenome == null) {
+							return ("Sobrenome inválido!");
 						} else
-							if(cpf.isEmpty() || cpf.length() < 12 || cpf.length() > 14 || cpf == null) {
-								return ("CPF inválido!");
+							if(dt_nasc.isEmpty() || ano_nasc > 2003 || dt_nasc.length() < 8 || dt_nasc.length() > 10 || dt_nasc == null) {
+								return ("Data de Nascimento inválida!");
 							} else
-								if(tel.isEmpty() || tel.length() < 7 || tel == null) {
-									return ("Telefone inválido!");
+								if(cpf.isEmpty() || cpf.length() < 12 || cpf.length() > 14 || cpf == null) {
+									return ("CPF inválido!");
 								} else
-									if(celular.isEmpty() || celular.length() < 10 || celular.length() >= 12 || celular == null) {
-										return ("Celular inválido!");
+									if(tel.isEmpty() || tel.length() < 8 || tel == null) {
+										return ("Telefone inválido!");
 									} else
-										if(tipo_sangue.isEmpty() || tipo_sangue.length() < 2 || tipo_sangue.length() > 2 || tipo_sangue == null) {
-											return ("Tipo Sanguíneo inválido!");
+										if(celular.isEmpty() || celular.length() < 9 || celular.length() >= 12 || celular == null) {
+											return ("Celular inválido!");
 										} else
-											if(regiao.isEmpty() || regiao.length() < 2 || regiao == null) {
-												return ("Região inválida!");
+											if(tipo_sangue.isEmpty() || tipo_sangue.length() < 2 || tipo_sangue.length() > 3 || tipo_sangue == null) {
+												return ("Tipo Sanguíneo inválido!");
 											} else
-												if(endereco.isEmpty() || endereco.length() < 7 || endereco == null) {
-													return ("Endereço inválido!");
-												} else 
-													if(peso < 50) {
-														return ("Peso inválido!");
-													} else
-														if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
-															return ("Doação inválida!");
-														} else 
-															if(aids == true) {
-																return ("Você possui um requisito inválido.");
-															} else
-																if(hepatite11 == true) {
+												if(regiao.isEmpty() || regiao.length() < 3 || regiao == null) {
+													return ("Região inválida!");
+												} else
+													if(endereco.isEmpty() || endereco.length() < 7 || endereco == null) {
+														return ("Endereço inválido!");
+													} else 
+														if(peso < 50) {
+															return ("Peso inválido!");
+														} else
+															if(sangue == false && rim == false && figado == false && medula == false && pulmao == false && pancreas == false) {
+																return ("Doação inválida!");
+															} else 
+																if(aids == true) {
 																	return ("Você possui um requisito inválido.");
 																} else
-																	if(htlv1ou2 == true) {
+																	if(hepatite11 == true) {
 																		return ("Você possui um requisito inválido.");
-																	} else 
-																		if(hepatiteBouC == true) {
+																	} else
+																		if(htlv1ou2 == true) {
 																			return ("Você possui um requisito inválido.");
-																		} else
-																			if(chagas == true) {
+																		} else 
+																			if(hepatiteBouC == true) {
 																				return ("Você possui um requisito inválido.");
-																			} else {
-																				Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
-																				boolean result = CRUDDoador.inserirDoador(doador);
-																				if (result == true) {
-																					MatchComumFactory.criarMatchDoador(doador);
-																					MatchInstFactory.criarMatchDoador(doador);
-																					return ("Cadastro realizado com sucesso!");
-																				}
-																				else
-																					return ("Ops, ocorreu um erro. Tente mais tarde");
-																				}
+																			} else
+																				if(chagas == true) {
+																					return ("Você possui um requisito inválido.");
+																				} else {
+																					Doador doador = new Doador(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, tipo_sangue, regiao, endereco, peso, sangue, rim, figado, medula, pulmao, pancreas, ativo);
+																					boolean result = CRUDDoador.inserirDoador(doador);
+																					if (result == true) {
+																						MatchComumFactory.criarMatchDoador(doador);
+																						MatchInstFactory.criarMatchDoador(doador);
+																						return ("Cadastro realizado com sucesso!");
+																					}
+																					else
+																						return ("Ops, ocorreu um erro. Tente mais tarde");
+																					}
 	}
 	
 }

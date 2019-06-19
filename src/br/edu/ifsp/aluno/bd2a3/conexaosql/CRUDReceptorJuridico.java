@@ -17,14 +17,15 @@ public class CRUDReceptorJuridico {
 		
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			String insert = "INSERT INTO receptor VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome_instituição()+"', "
+			String insert = "INSERT INTO ReceptorJuridico VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome_instituição()+"', "
 					+ "'"+receptor.getCNPJ()+"', '"+receptor.getTel1()+"', '"+receptor.getTel2()+"', '"+receptor.getRegiao()+"', "
-							+ ""+receptor.getEndereco()+", '"+receptor.isSangue()+"', "+receptor.isRim()+", "+receptor.isFigado()+", "
-									+ ""+receptor.isMedula()+", "+receptor.isPulmao()+", "+receptor.isPancreas()+", "+receptor.getMain_tipo_sangue()+");";
+							+ "'"+receptor.getEndereco()+"', '"+receptor.isSangue()+"', "+receptor.isRim()+", "+receptor.isFigado()+", "
+									+ ""+receptor.isMedula()+", "+receptor.isPulmao()+", "+receptor.isPancreas()+", '"+receptor.getMain_tipo_sangue()+"');";
 			try{
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -51,6 +52,8 @@ public class CRUDReceptorJuridico {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				conn.close();
+				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
 				System.err.println("SQLState: " + esql.getSQLState());
@@ -60,7 +63,7 @@ public class CRUDReceptorJuridico {
 				System.err.println("Erro: " + e.getMessage());
 				return false;
 			}
-			return true;
+			
 		} else {
 			return false;
 		}
@@ -78,7 +81,6 @@ public class CRUDReceptorJuridico {
 				
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -106,7 +108,7 @@ public class CRUDReceptorJuridico {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -134,7 +136,6 @@ public class CRUDReceptorJuridico {
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -161,7 +162,6 @@ public class CRUDReceptorJuridico {
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -188,7 +188,6 @@ public class CRUDReceptorJuridico {
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

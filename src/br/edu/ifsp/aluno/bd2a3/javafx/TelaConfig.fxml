@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="509.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.TelaConfigController">
+<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="509.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.TelaConfigController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1061.0" prefWidth="266.0">
          <children>
@@ -50,8 +50,8 @@
             <Label layoutX="118.0" layoutY="901.0" text="Região" />
             <TextArea fx:id="endereco" layoutX="25.0" layoutY="813.0" prefHeight="77.0" prefWidth="215.0" promptText="CEP:                                          Rua:                                             Bairro:                                                 Número: " />
             <ChoiceBox fx:id="regiao" layoutX="58.0" layoutY="918.0" prefWidth="150.0" />
-            <Button fx:id="salvar" layoutX="83.0" layoutY="964.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Salvar Alterações" />
-            <Button fx:id="voltar" layoutX="108.0" layoutY="1023.0" mnemonicParsing="false" onAction="#PreCadastro" text="Voltar" />
+            <Button fx:id="salvar" layoutX="83.0" layoutY="964.0" mnemonicParsing="false" onAction="#salvarAlteracoes" text="Salvar Alterações" />
+            <Button fx:id="voltar" layoutX="108.0" layoutY="1023.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
             <Label fx:id="label2" layoutX="91.0" layoutY="689.0" prefHeight="17.0" prefWidth="93.0" text="Procura Receber:" />
             <Label layoutX="22.0" layoutY="87.0" text="Hoje você possui alguma dessas doenças:" />
             <Label fx:id="err" layoutX="44.0" layoutY="989.0" prefHeight="17.0" prefWidth="199.0" textAlignment="CENTER" textFill="RED" />

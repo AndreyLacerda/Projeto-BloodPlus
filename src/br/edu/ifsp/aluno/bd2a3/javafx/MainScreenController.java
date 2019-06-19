@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -69,11 +70,13 @@ public class MainScreenController {
 			ResultSet rs = CRUDDoador.loginDoador(email.getText(), pass.getText());
 			if (rs.next() == false) {
 				error.setText("Email ou senha inválidos");
+				rs.close();
 			} else {
 				Stage stage = (Stage) login.getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
-				Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+				Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 				TelaUserController telaUser = (TelaUserController)loader.getController();
+				telaUser.setResultSetLabel(rs);
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -85,11 +88,13 @@ public class MainScreenController {
 				ResultSet rs = CRUDReceptorComum.loginReceptor(email.getText(), pass.getText());
 				if(rs.next() == false) {
 					error.setText("Email ou senha inválidos");
+					rs.close();
 				} else {
 					Stage stage = (Stage) login.getScene().getWindow();
 					FXMLLoader loader = new FXMLLoader();
-					Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+					Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 					TelaUserController telaUser = (TelaUserController)loader.getController();
+					telaUser.setResultSetLabel(rs);
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
 					stage.setResizable(false);
@@ -101,11 +106,13 @@ public class MainScreenController {
 					ResultSet rs = CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText());
 					if(rs.next() == false) {
 						error.setText("Email ou senha inválidos");
+						rs.close();
 					} else {
 						Stage stage = (Stage) login.getScene().getWindow();
 						FXMLLoader loader = new FXMLLoader();
-						Pane root = loader.load(getClass().getResource("TelaUser.fxml"));
+						Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 						TelaUserController telaUser = (TelaUserController)loader.getController();
+						telaUser.setResultSetLabel(rs);
 						Scene scene = new Scene(root);
 						stage.setScene(scene);
 						stage.setResizable(false);

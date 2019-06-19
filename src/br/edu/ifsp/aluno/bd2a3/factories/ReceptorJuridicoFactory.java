@@ -38,7 +38,7 @@ public class ReceptorJuridicoFactory {
 										if(endereco.isEmpty() || endereco.length() < 7) {
 											return ("Endereço inválida!");
 										} else 
-											if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
+											if(sangue == false && rim == false && figado == false && medula == false && pulmao == false && pancreas == false) {
 												return ("Pedido inválido!");
 											} else {
 												ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, rim, figado, medula, pulmao, pancreas, ativo, sangue, main_tipo_sangue);

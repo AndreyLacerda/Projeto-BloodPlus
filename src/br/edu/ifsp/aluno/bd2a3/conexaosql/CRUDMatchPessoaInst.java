@@ -24,6 +24,7 @@ public class CRUDMatchPessoaInst {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				conn.close();
 				return true;
 				
 			} catch(SQLException esql) {
@@ -52,6 +53,7 @@ public class CRUDMatchPessoaInst {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -78,6 +80,7 @@ public class CRUDMatchPessoaInst {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -104,7 +107,6 @@ public class CRUDMatchPessoaInst {
 				String select = "SELECT * FROM MatchPessoaInst WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

@@ -58,7 +58,7 @@
             <Button fx:id="preTela" layoutX="48.0" layoutY="1165.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à seleção de cadastro" />
             <Label fx:id="label2" layoutX="91.0" layoutY="812.0" prefHeight="17.0" prefWidth="93.0" text="Procura Receber:" />
             <Label layoutX="20.0" layoutY="87.0" text="Já possuiu/possui alguma dessas doenças:" />
-            <Label fx:id="err" contentDisplay="CENTER" layoutX="33.0" layoutY="1112.0" prefHeight="17.0" prefWidth="210.0" text="Ops, ocorreu um erro. Tente mais tarde" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="1112.0" prefHeight="17.0" prefWidth="210.0" textAlignment="CENTER" textFill="RED" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

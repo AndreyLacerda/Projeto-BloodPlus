@@ -51,7 +51,7 @@ public class ReceptorComumFactory {
 													if(peso < 50) {
 														return ("Peso inválido!");
 													} else
-														if(sangue == false || rim == false || figado == false || medula == false || pulmao == false || pancreas == false) {
+														if(sangue == false && rim == false && figado == false && medula == false && pulmao == false && pancreas == false) {
 															return ("Pedido inválido!");
 														} else 
 															if(aids == true) {

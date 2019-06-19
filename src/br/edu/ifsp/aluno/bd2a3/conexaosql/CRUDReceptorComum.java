@@ -17,15 +17,16 @@ public class CRUDReceptorComum {
 		
 		boolean testeConnection;
 		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			String insert = "INSERT INTO receptor VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome()+"', "
+			String insert = "INSERT INTO ReceptorComum VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome()+"', "
 					+ "'"+receptor.getSobrenome()+"', '"+receptor.getDt_nasc()+"', '"+receptor.getTel()+"', '"+receptor.getCelular()+"', "
-							+ ""+receptor.getPeso()+", '"+receptor.getTipo_sangue()+"', "+receptor.getRegiao()+", "+receptor.isAtivo()+", "
-									+ ""+receptor.isSangue()+", "+receptor.getCpf()+", "+receptor.isPulmao()+", "+receptor.isFigado()+", "
-											+ "'"+receptor.isRim()+"', '"+receptor.isPancreas()+"',"+receptor.isMedula()+", "+receptor.getEndereco()+");";
+							+ ""+receptor.getPeso()+", '"+receptor.getTipo_sangue()+"', '"+receptor.getRegiao()+"', "+receptor.isAtivo()+", "
+									+ ""+receptor.isSangue()+", '"+receptor.getCpf()+"', "+receptor.isPulmao()+", "+receptor.isFigado()+", "
+											+ "'"+receptor.isRim()+"', '"+receptor.isPancreas()+"',"+receptor.isMedula()+", '"+receptor.getEndereco()+"');";
 			try{
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -52,6 +53,8 @@ public class CRUDReceptorComum {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				conn.close();
+				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
 				System.err.println("SQLState: " + esql.getSQLState());
@@ -61,7 +64,6 @@ public class CRUDReceptorComum {
 				System.err.println("Erro: " + e.getMessage());
 				return false;
 			}
-			return true;
 		} else {
 			return false;
 		}
@@ -79,7 +81,6 @@ public class CRUDReceptorComum {
 				
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -107,6 +108,7 @@ public class CRUDReceptorComum {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				conn.close();
 				
 				return true;
 			} catch(SQLException esql) {
@@ -134,8 +136,7 @@ public class CRUDReceptorComum {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(select);
-				
+				ResultSet rs = stmt.executeQuery(select);	
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -161,8 +162,7 @@ public class CRUDReceptorComum {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(select);
-				
+				ResultSet rs = stmt.executeQuery(select);	
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -189,7 +189,6 @@ public class CRUDReceptorComum {
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

@@ -26,6 +26,7 @@ public class CRUDDoador {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -52,6 +53,8 @@ public class CRUDDoador {
 				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				conn.close();
+				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
 				System.err.println("SQLState: " + esql.getSQLState());
@@ -61,7 +64,7 @@ public class CRUDDoador {
 				System.err.println("Erro: " + e.getMessage());
 				return false;
 			}
-			return true;
+			
 		} else {
 			return false;
 		}
@@ -78,7 +81,6 @@ public class CRUDDoador {
 				String select = "SELECT * FROM Doador WHERE email = '" + email + "' AND senha = '" + senha + "' ";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -106,7 +108,7 @@ public class CRUDDoador {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				
+				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -134,7 +136,6 @@ public class CRUDDoador {
 				String select = "SELECT * FROM Doador WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -161,7 +162,6 @@ public class CRUDDoador {
 				String select = "SELECT * FROM Doador WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -188,7 +188,6 @@ public class CRUDDoador {
 				String select = "SELECT * FROM Doador WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
-				
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

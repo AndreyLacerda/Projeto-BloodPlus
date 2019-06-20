@@ -39,15 +39,16 @@ public class CRUDReceptorComum {
 		}
 	}
 	
-	public static boolean deleteReceptor(String email, String senha) {
+	public static boolean deleteReceptor(String email) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String delete = "DELETE FROM ReceptorComum WHERE email = '"+email+"' AND senha = '"+senha+"';";
+				String delete = "DELETE FROM ReceptorComum WHERE email = '"+email+"'";
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -88,13 +89,40 @@ public class CRUDReceptorComum {
 		}
 	}
 	
-	public static boolean updateReceptor(ReceptorComum receptor, String campo, String valor) {
+	public static boolean updateReceptor(String email, String campo, String valor) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String update = "UPDATE ReceptorComum SET "+campo+" = "+valor+" WHERE email = "+receptor.getEmail()+";";
+				String update = "UPDATE ReceptorComum SET "+campo+" = '"+valor+"' WHERE email = '"+email+"';";
+				
+				stmt = conn.createStatement();
+				stmt.execute(update);
+				
+				return true;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return false;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean updateReceptor2(String email, String campo, boolean valor) {
+		Statement stmt = null;
+		
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
+				String update = "UPDATE ReceptorComum SET "+campo+" = "+valor+" WHERE email = '"+email+"';";
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);

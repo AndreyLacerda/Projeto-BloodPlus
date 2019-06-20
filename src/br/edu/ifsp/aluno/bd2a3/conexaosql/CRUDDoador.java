@@ -39,15 +39,16 @@ public class CRUDDoador {
 		}
 	}
 	
-	public static boolean deleteDoador(String email, String senha) {
+	public static boolean deleteDoador(String email) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try {
-				String delete = "DELETE FROM Doador WHERE email = '"+email+"' AND senha = '"+senha+"';";
+				String delete = "DELETE FROM Doador WHERE email = '"+email+"';";
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -88,13 +89,38 @@ public class CRUDDoador {
 		}
 	}
 	
-	public static boolean updateDoador(Doador doador, String campo, String valor) {
+	public static boolean updateDoador(String email, String campo, String valor) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String update = "UPDATE Doador SET "+campo+" = "+valor+" WHERE email = "+doador.getEmail()+";";
+				String update = "UPDATE Doador SET "+campo+" = '"+valor+"' WHERE email = '"+email+"';";
+				stmt = conn.createStatement();
+				stmt.execute(update);
+				return true;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return false;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean updateDoador2(String email, String campo, boolean valor) {
+		Statement stmt = null;
+		
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
+				String update = "UPDATE Doador SET "+campo+" = "+valor+" WHERE email = '"+email+"';";
 				stmt = conn.createStatement();
 				stmt.execute(update);
 				return true;

@@ -53,31 +53,16 @@ public class ReceptorComumFactory {
 													} else
 														if(sangue == false && rim == false && figado == false && medula == false && pulmao == false && pancreas == false) {
 															return ("Pedido inválido!");
-														} else 
-															if(aids == true) {
-																return ("Você possui um requisito inválido.");
-															} else
-																if(hepatite11 == true) {
-																	return ("Você possui um requisito inválido.");
-																} else
-																	if(htlv1ou2 == true) {
-																		return ("Você possui um requisito inválido.");
-																	} else 
-																		if(hepatiteBouC == true) {
-																			return ("Você possui um requisito inválido.");
-																		} else
-																			if(chagas == true) {
-																				return ("Você possui um requisito inválido."); 
-																			} else {
-																				ReceptorComum receptorC = new ReceptorComum(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, peso, tipo_sangue, sangue, rim, figado, medula, pulmao, pancreas, ativo, regiao, endereco);
-																				boolean result = CRUDReceptorComum.inserirReceptor(receptorC);
-																				if (result == true) {
-																					MatchComumFactory.criarMatchReceptor(receptorC);
-																					return ("Cadastro realizado com sucesso!");
-																				}
-																				else
-																					return ("Error ao Cadastrar Usuário");
-																				}
+														} else {
+															ReceptorComum receptorC = new ReceptorComum(email, senha, nome, sobrenome, dt_nasc, cpf, tel, celular, peso, tipo_sangue, sangue, rim, figado, medula, pulmao, pancreas, ativo, regiao, endereco);
+															boolean result = CRUDReceptorComum.inserirReceptor(receptorC);
+															if (result == true) {
+																MatchComumFactory.criarMatchReceptor(receptorC);
+																return ("Cadastro realizado com sucesso!");
+															}
+															else
+																return ("Error ao Cadastrar Usuário");
+															}
 	}
 	
 }

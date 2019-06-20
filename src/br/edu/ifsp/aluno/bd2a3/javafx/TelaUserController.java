@@ -28,20 +28,38 @@ public class TelaUserController {
 	
 	private ResultSet user;
 	
-	public void setResultSetLabel(ResultSet  rs) throws SQLException {
+	private String type;
+	
+	public void setResultSetLabelType(ResultSet  rs, String tipo) throws SQLException {
 		user = rs;
 		mensagem.setText("Olá, "+user.getString(3)+"!");
+		type = tipo;
 	}
 	
-	public void config(ActionEvent event) throws IOException {
-		Stage stage = (Stage) config.getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader();
-		ScrollPane root = loader.load(getClass().getResource("TelaConfig.fxml"));
-		TelaConfigController telaConfig = (TelaConfigController)loader.getController();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
+	public void config(ActionEvent event) throws IOException, SQLException {
+		if (type.equals("Doador") || type.equals("Receptor")) {
+			Stage stage = (Stage) config.getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			ScrollPane root = loader.load(getClass().getResource("TelaConfig.fxml").openStream());
+			TelaConfigController telaConfig = (TelaConfigController)loader.getController();
+			telaConfig.setResultSetType(user, type);
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} else {
+			if (type.equals("Instituição")) {
+				Stage stage = (Stage) config.getScene().getWindow();
+				FXMLLoader loader = new FXMLLoader();
+				ScrollPane root = loader.load(getClass().getResource("TelaConfigInst.fxml").openStream());
+				TelaConfigControllerInst telaConfig = (TelaConfigControllerInst)loader.getController();
+				telaConfig.setResultSet(user);
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+		}
 	}
 	
 	public void logout(ActionEvent event) throws IOException, SQLException {

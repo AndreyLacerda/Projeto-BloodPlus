@@ -162,21 +162,4 @@ public class ReceptorComum {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	public void trocarSenha(String nova_senha) {
-		if (nova_senha.contains(" ") || nova_senha.isEmpty() || nova_senha.length() < 8) {
-			System.out.println("Valor de Senha inválido!");
-		} else {
-			this.setSenha(nova_senha);
-			System.out.println("Senha alterada com sucesso!");
-		}
-	}
-	
-	public void trocarEmail(String novo_email) {
-		if (novo_email.contains("@")) {
-			this.setEmail(novo_email);
-			System.out.println("E-mail alterado com sucesso!");
-		}else
-			System.out.println("Valor de e-mail inválido");
-	}
 }

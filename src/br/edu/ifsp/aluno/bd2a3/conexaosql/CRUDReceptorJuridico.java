@@ -22,6 +22,7 @@ public class CRUDReceptorJuridico {
 			try{
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -37,15 +38,16 @@ public class CRUDReceptorJuridico {
 		}
 	}
 	
-	public static boolean deleteReceptor(String email, String senha) {
+	public static boolean deleteReceptor(String email) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String delete = "DELETE FROM ReceptorJuridico WHERE email = '"+email+"' AND senha = '"+senha+"';";
+				String delete = "DELETE FROM ReceptorJuridico WHERE email = '"+email+"'";
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -87,13 +89,39 @@ public class CRUDReceptorJuridico {
 		}
 	}
 	
-	public static boolean updateReceptor(ReceptorJuridico receptor, String campo, String valor) {
+	public static boolean updateReceptor(String email, String campo, String valor) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String update = "UPDATE ReceptorJuridico SET "+campo+" = "+valor+" WHERE email = "+receptor.getEmail()+";";
+				String update = "UPDATE ReceptorJuridico SET "+campo+" = '"+valor+"' WHERE email = '"+email+"';";
+				
+				stmt = conn.createStatement();
+				stmt.execute(update);
+				return true;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return false;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean updateReceptor2(String email, String campo, Boolean valor) {
+		Statement stmt = null;
+		
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
+				String update = "UPDATE ReceptorJuridico SET "+campo+" = "+valor+" WHERE email = '"+email+"';";
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);

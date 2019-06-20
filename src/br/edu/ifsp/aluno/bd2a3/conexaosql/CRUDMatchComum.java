@@ -39,15 +39,41 @@ public class CRUDMatchComum {
 		}
 	}
 	
-	public static boolean deleteMatch(MatchComum match) {
+	public static boolean deleteMatchDoador(String email) {
 		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String delete = "DELETE FROM MatchComum WHERE email_doador ="+match.getDoador()+" AND email_receptor = "+match.getReceptor()+"";
+				String delete = "DELETE FROM MatchComum WHERE email_doador ='"+email+"'";
 				stmt = conn.createStatement();
 				stmt.execute(delete);
+				stmt.close();
+				return true;
+			} catch(SQLException esql) {
+				System.err.println("SQLException: " + esql.getMessage());
+				System.err.println("SQLState: " + esql.getSQLState());
+				System.err.println("VendorError: " + esql.getErrorCode());
+				return false;
+			} catch (Exception e) {
+				System.err.println("Erro: " + e.getMessage());
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean deleteMatchReceptor(String email) {
+		Statement stmt = null;
+		
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
+				String delete = "DELETE FROM MatchComum WHERE email_receptor ='"+email+"'";
+				stmt = conn.createStatement();
+				stmt.execute(delete);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

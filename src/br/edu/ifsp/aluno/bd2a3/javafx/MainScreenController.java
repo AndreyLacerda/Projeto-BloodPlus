@@ -76,7 +76,7 @@ public class MainScreenController {
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 				TelaUserController telaUser = (TelaUserController)loader.getController();
-				telaUser.setResultSetLabel(rs);
+				telaUser.setResultSetLabelType(rs, "Doador");
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -94,7 +94,7 @@ public class MainScreenController {
 					FXMLLoader loader = new FXMLLoader();
 					Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 					TelaUserController telaUser = (TelaUserController)loader.getController();
-					telaUser.setResultSetLabel(rs);
+					telaUser.setResultSetLabelType(rs, "Receptor");
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
 					stage.setResizable(false);
@@ -112,7 +112,7 @@ public class MainScreenController {
 						FXMLLoader loader = new FXMLLoader();
 						Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 						TelaUserController telaUser = (TelaUserController)loader.getController();
-						telaUser.setResultSetLabel(rs);
+						telaUser.setResultSetLabelType(rs, "Instituição");
 						Scene scene = new Scene(root);
 						stage.setScene(scene);
 						stage.setResizable(false);

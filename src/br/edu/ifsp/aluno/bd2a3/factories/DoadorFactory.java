@@ -1,5 +1,6 @@
 package br.edu.ifsp.aluno.bd2a3.factories;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
@@ -82,5 +83,4 @@ public class DoadorFactory {
 																						return ("Ops, ocorreu um erro. Tente mais tarde");
 																					}
 	}
-	
 }

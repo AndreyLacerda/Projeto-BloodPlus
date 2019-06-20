@@ -12,21 +12,18 @@ public class CRUDDoador {
 	
 	public static boolean inserirDoador(Doador doador) {
 		
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			String insert = "INSERT INTO Doador VALUES ('"+doador.getEmail()+"', '"+doador.getSenha()+"', '"+doador.getNome()+"', "
 					+ "'"+doador.getSobrenome()+"', '"+doador.getDt_nasc()+"', '"+doador.getTel()+"', '"+doador.getCelular()+"', "
 							+ ""+doador.getPeso()+", '"+doador.getTipo_sangue()+"', "+doador.isSangue()+", "+doador.isRim()+", "
 									+ ""+doador.isFigado()+", "+doador.isMedula()+", "+doador.isPulmao()+", "+doador.isPancreas()+", "
 											+ "'"+doador.getRegiao()+"', '"+doador.getEndereco()+"',"+doador.isAtivo()+", '"+doador.getCpf()+"');";
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -43,17 +40,14 @@ public class CRUDDoador {
 	}
 	
 	public static boolean deleteDoador(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try {
 				String delete = "DELETE FROM Doador WHERE email = '"+email+"' AND senha = '"+senha+"';";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -71,13 +65,11 @@ public class CRUDDoador {
 	}
 	
 	public static ResultSet loginDoador(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM Doador WHERE email = '" + email + "' AND senha = '" + senha + "' ";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
@@ -97,18 +89,14 @@ public class CRUDDoador {
 	}
 	
 	public static boolean updateDoador(Doador doador, String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String update = "UPDATE Doador SET "+campo+" = "+valor+" WHERE email = "+doador.getEmail()+";";
-				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -126,13 +114,11 @@ public class CRUDDoador {
 	}
 	
 	public static ResultSet selectDoador (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM Doador WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
@@ -152,13 +138,11 @@ public class CRUDDoador {
 	}
 	
 	public static ResultSet selectDoador2 (String campo1, String valor1, String campo2, String valor2) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM Doador WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
@@ -178,13 +162,11 @@ public class CRUDDoador {
 	}
 	
 	public static ResultSet selectDoador3 (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM Doador WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);

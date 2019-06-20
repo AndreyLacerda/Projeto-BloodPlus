@@ -2,7 +2,6 @@ package br.edu.ifsp.aluno.bd2a3.javafx;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 
 import br.edu.ifsp.aluno.bd2a3.factories.DoadorFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.ReceptorComumFactory;
@@ -16,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -188,8 +186,8 @@ public class CadastroComumController {
 				Stage stage = (Stage) confirmar.getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
-				MainScreenController mainScreen = (MainScreenController)loader.getController();
-				mainScreen.setErr(result);
+				MainScreenController main = (MainScreenController)loader.getController();
+				main.setErr(result);
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -198,7 +196,7 @@ public class CadastroComumController {
 				err.setText(result);
 			}
 		} catch (IOException ex) {
-			System.err.println(ex.getMessage());
+			System.err.println("Bugou o seguinte: "+ex.getMessage());
 			err.setText("Ops, ocorreu um erro. Tente mais tarde");
 		}
 	}

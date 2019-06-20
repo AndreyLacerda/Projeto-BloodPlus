@@ -61,7 +61,7 @@ public class MainScreenController {
 	
 	public void setErr(String valor) {
 		error.setText(valor);
-		error.setTextFill(Color.web("#14a71b"));
+		error.setTextFill(Color.web("#4bb117"));
 	}
 	
 	public void Login(ActionEvent event) throws SQLException, IOException {

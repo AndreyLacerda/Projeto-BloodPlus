@@ -1,5 +1,6 @@
 package br.edu.ifsp.aluno.bd2a3.javafx;
 
+import br.edu.ifsp.aluno.bd2a3.conexaosql.TesteConnectionSQLite;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class App extends Application{
 	}
 	
 	public static void main(String[] args) {
+		TesteConnectionSQLite.testarConnection();
 		launch();
 
 	}

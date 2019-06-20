@@ -12,21 +12,18 @@ public class CRUDReceptorComum {
 	
 	public static boolean inserirReceptor(ReceptorComum receptor) {
 		
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			String insert = "INSERT INTO ReceptorComum VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome()+"', "
 					+ "'"+receptor.getSobrenome()+"', '"+receptor.getDt_nasc()+"', '"+receptor.getTel()+"', '"+receptor.getCelular()+"', "
 							+ ""+receptor.getPeso()+", '"+receptor.getTipo_sangue()+"', '"+receptor.getRegiao()+"', "+receptor.isAtivo()+", "
 									+ ""+receptor.isSangue()+", '"+receptor.getCpf()+"', "+receptor.isPulmao()+", "+receptor.isFigado()+", "
 											+ "'"+receptor.isRim()+"', '"+receptor.isPancreas()+"',"+receptor.isMedula()+", '"+receptor.getEndereco()+"');";
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -43,17 +40,14 @@ public class CRUDReceptorComum {
 	}
 	
 	public static boolean deleteReceptor(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String delete = "DELETE FROM ReceptorComum WHERE email = '"+email+"' AND senha = '"+senha+"';";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -70,13 +64,11 @@ public class CRUDReceptorComum {
 	}
 	
 	public static ResultSet loginReceptor(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try {
 				String select = "SELECT * FROM ReceptorComum WHERE email = '"+email+"' AND senha = '"+senha+"' ";
 				
 				stmt = conn.createStatement();
@@ -97,18 +89,15 @@ public class CRUDReceptorComum {
 	}
 	
 	public static boolean updateReceptor(ReceptorComum receptor, String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String update = "UPDATE ReceptorComum SET "+campo+" = "+valor+" WHERE email = "+receptor.getEmail()+";";
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				conn.close();
 				
 				return true;
 			} catch(SQLException esql) {
@@ -127,13 +116,11 @@ public class CRUDReceptorComum {
 	}
 	
 	public static ResultSet selectReceptor (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);	
@@ -153,13 +140,11 @@ public class CRUDReceptorComum {
 	}
 	
 	public static ResultSet selectReceptor2 (String campo1, String valor1, String campo2, String valor2) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try {
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);	
@@ -179,13 +164,11 @@ public class CRUDReceptorComum {
 	}
 	
 	public static ResultSet selectReceptor3 (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try {
 				String select = "SELECT * FROM ReceptorComum WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);

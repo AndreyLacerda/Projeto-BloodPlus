@@ -11,21 +11,17 @@ import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 public class CRUDReceptorJuridico {
 	
 	public static boolean inserirReceptor(ReceptorJuridico receptor) {
-		
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			String insert = "INSERT INTO ReceptorJuridico VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome_instituição()+"', "
 					+ "'"+receptor.getCNPJ()+"', '"+receptor.getTel1()+"', '"+receptor.getTel2()+"', '"+receptor.getRegiao()+"', "
 							+ "'"+receptor.getEndereco()+"', '"+receptor.isSangue()+"', "+receptor.isRim()+", "+receptor.isFigado()+", "
-									+ ""+receptor.isMedula()+", "+receptor.isPulmao()+", "+receptor.isPancreas()+", '"+receptor.getMain_tipo_sangue()+"');";
+									+ ""+receptor.isMedula()+", "+receptor.isPulmao()+", "+receptor.isPancreas()+", "+receptor.isAtivo()+", '"+receptor.getMain_tipo_sangue()+"');";
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -42,17 +38,14 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static boolean deleteReceptor(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String delete = "DELETE FROM ReceptorJuridico WHERE email = '"+email+"' AND senha = '"+senha+"';";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -70,13 +63,11 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static ResultSet loginReceptor(String email, String senha) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try {
 				String select = "SELECT * FROM ReceptorJuridico WHERE email = '"+email+"' AND senha = '"+senha+"' ";
 				
 				stmt = conn.createStatement();
@@ -97,18 +88,15 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static boolean updateReceptor(ReceptorJuridico receptor, String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String update = "UPDATE ReceptorJuridico SET "+campo+" = "+valor+" WHERE email = "+receptor.getEmail()+";";
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -126,13 +114,11 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static ResultSet selectReceptor (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
@@ -152,13 +138,11 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static ResultSet selectReceptor2 (String campo1, String valor1, String campo2, String valor2) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo1+" = "+valor1+" AND "+campo2+" = '"+valor2+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
@@ -178,13 +162,11 @@ public class CRUDReceptorJuridico {
 	}
 	
 	public static ResultSet selectReceptor3 (String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try {
 				String select = "SELECT * FROM ReceptorJuridico WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);

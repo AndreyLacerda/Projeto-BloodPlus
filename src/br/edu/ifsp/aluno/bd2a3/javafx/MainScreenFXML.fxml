@@ -13,10 +13,10 @@
 
 <AnchorPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.MainScreenController">
    <children>
-      <ImageView fitHeight="176.0" fitWidth="229.0" layoutX="19.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true"> 
-      <image>
-      <Image url="@../../../../../../../Imagens/teste.jpg" />
-      </image>
+      <ImageView fitHeight="176.0" fitWidth="229.0" layoutX="19.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@\../Imagens/teste.jpg" />
+         </image>
       </ImageView>
       <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="198.0" prefHeight="20.0" prefWidth="229.0" textAlignment="CENTER" textFill="#c30f0f">
          <font>

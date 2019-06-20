@@ -26,13 +26,13 @@ public class ReceptorJuridicoFactory {
 						if(cNPJ.isEmpty() || cNPJ.length() < 17 || cNPJ.length() > 18) {
 							return ("CNPJ inválido!");
 						} else
-							if(tel1.isEmpty() || tel1.length() < 7 || tel1.length() > 8) {
+							if(tel1.isEmpty() || tel1.length() < 8 || tel1.length() > 10) {
 								return ("Telefone 1 inválido!");
 							} else
-								if(tel2.isEmpty() || tel2.length() < 7 || tel2.length() > 8) {
+								if(tel2.isEmpty() || tel2.length() < 8 || tel2.length() > 10) {
 									return ("Telefone 2 inválido!");
 								} else
-									if(regiao.isEmpty() || regiao.length() < 2) {
+									if(regiao.isEmpty() || regiao.length() < 3) {
 										return ("Região inválida!");
 									} else
 										if(endereco.isEmpty() || endereco.length() < 7) {
@@ -41,7 +41,7 @@ public class ReceptorJuridicoFactory {
 											if(sangue == false && rim == false && figado == false && medula == false && pulmao == false && pancreas == false) {
 												return ("Pedido inválido!");
 											} else {
-												ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, rim, figado, medula, pulmao, pancreas, ativo, sangue, main_tipo_sangue);
+												ReceptorJuridico receptorJ = new ReceptorJuridico(email, senha, nome_instituição, cNPJ, tel1, tel2, regiao, endereco, sangue, rim, figado, medula, pulmao, pancreas, ativo, main_tipo_sangue);
 												boolean result = CRUDReceptorJuridico.inserirReceptor(receptorJ);
 												if (result == true) {
 													MatchInstFactory.criarMatchReceptor(receptorJ);

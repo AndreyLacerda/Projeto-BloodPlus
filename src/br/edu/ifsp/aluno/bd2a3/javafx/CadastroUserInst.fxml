@@ -47,7 +47,7 @@
             <Button fx:id="confirmar" layoutX="81.0" layoutY="771.0" mnemonicParsing="false" onAction="#confirmarCadastro" text="Confirmar Cadastro" />
             <Button fx:id="preTela" layoutX="52.0" layoutY="849.0" mnemonicParsing="false" onAction="#PreCadastro" text="Retornar à seleção de cadastro" />
             <Label fx:id="label2" layoutX="94.0" layoutY="497.0" prefHeight="17.0" prefWidth="94.0" text="Procura Receber:" />
-            <Label fx:id="err" alignment="CENTER" layoutX="35.0" layoutY="796.0" prefHeight="17.0" prefWidth="213.0" text="Ops, ocorreu um erro. Tente mais tarde" textAlignment="CENTER" textFill="#f80000" />
+            <Label fx:id="err" alignment="CENTER" layoutX="35.0" layoutY="796.0" prefHeight="17.0" prefWidth="213.0" textAlignment="CENTER" textFill="#f80000" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

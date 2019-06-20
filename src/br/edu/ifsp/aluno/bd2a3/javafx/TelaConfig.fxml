@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="509.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" vvalue="1.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.TelaConfigController">
+<ScrollPane maxHeight="542.0" maxWidth="267.0" minHeight="509.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.TelaConfigController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1061.0" prefWidth="266.0">
          <children>
-            <Label fx:id="label1" layoutX="68.0" layoutY="26.0" prefHeight="53.0" prefWidth="128.0" text="Edição do Perfil">
+            <Label fx:id="label1" layoutX="68.0" layoutY="14.0" prefHeight="28.0" prefWidth="128.0" text="Edição do Perfil">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,6 +55,7 @@
             <Label fx:id="label2" layoutX="91.0" layoutY="689.0" prefHeight="17.0" prefWidth="93.0" text="Procura Receber:" />
             <Label layoutX="22.0" layoutY="87.0" text="Hoje você possui alguma dessas doenças:" />
             <Label fx:id="err" layoutX="44.0" layoutY="989.0" prefHeight="17.0" prefWidth="199.0" textAlignment="CENTER" textFill="RED" />
+            <Button fx:id="excluir" layoutX="94.0" layoutY="53.0" mnemonicParsing="false" onAction="#excluir" text="Excluir Conta" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

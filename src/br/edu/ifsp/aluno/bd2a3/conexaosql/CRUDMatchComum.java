@@ -11,20 +11,17 @@ import br.edu.ifsp.aluno.bd2a3.matchs.MatchComum;
 public class CRUDMatchComum {
 	
 	public static boolean inserirMatchComum(MatchComum match) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String insert = "INSERT INTO MatchComum VALUES ('"+match.getDoador()+"', '"+match.getReceptor()+"', "
 						+ "'"+match.getDoacao()+"', "+match.isFracasso()+", "+match.isSucesso()+", "+match.getMotivo()+", "
 								+ ""+match.isCancelada()+", "+match.isFinalizada()+" )";
 				
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
-				conn.close();
 				return true;
 				
 			} catch(SQLException esql) {
@@ -43,17 +40,14 @@ public class CRUDMatchComum {
 	}
 	
 	public static boolean deleteMatch(MatchComum match) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String delete = "DELETE FROM MatchComum WHERE email_doador ="+match.getDoador()+" AND email_receptor = "+match.getReceptor()+"";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -70,17 +64,14 @@ public class CRUDMatchComum {
 	}
 	
 	public static boolean updateMatchComum(MatchComum match,String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try {
 				String update = "UPDATE MatchComum SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador()+" AND email_receptor = "+match.getReceptor()+"";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -97,13 +88,11 @@ public class CRUDMatchComum {
 	}
 	
 	public static ResultSet selectMatchComum(String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM MatchComum WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);				

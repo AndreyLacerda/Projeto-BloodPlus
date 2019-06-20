@@ -11,20 +11,17 @@ import br.edu.ifsp.aluno.bd2a3.matchs.MatchPessoaInst;
 public class CRUDMatchPessoaInst {
 	
 	public static boolean inserirMatchPessoaInst(MatchPessoaInst match) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String insert = "INSERT INTO MatchPessoaInst VALUES ('"+match.getDoador()+"', '"+match.getReceptor()+"', "
 						+ "'"+match.getDoacao()+"', "+match.getMotivo()+", "+match.isFracasso()+", "+match.isSucesso()+", "
 								+ ""+match.isCancelada()+", "+match.isFinalizada()+" )";
 				
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(insert);
-				conn.close();
 				return true;
 				
 			} catch(SQLException esql) {
@@ -43,17 +40,14 @@ public class CRUDMatchPessoaInst {
 	}
 	
 	public static boolean deleteMatch(MatchPessoaInst match) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String delete = "DELETE FROM MatchPessoaInst WHERE email_doador ="+match.getDoador()+" AND email_receptorJuridico = "+match.getReceptor()+"";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(delete);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -70,17 +64,14 @@ public class CRUDMatchPessoaInst {
 	}
 	
 	public static boolean updateMatchPessoaInst(MatchPessoaInst match,String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
-			try {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
+			try{
 				String update = "UPDATE MatchPessoaInst SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador()+" AND email_receptorJuridico = "+match.getReceptor()+"";
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				conn.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -97,13 +88,11 @@ public class CRUDMatchPessoaInst {
 	}
 	
 	public static ResultSet selectMatchPessoaInst(String campo, String valor) {
-		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 		Statement stmt = null;
 		
-		boolean testeConnection;
-		if (testeConnection = TesteConnectionSQLite.checarConexão()) {
+		Connection conn = TesteConnectionSQLite.checarConexão();
+		if (conn != null) {
 			try{
-				Connection conn = DriverManager.getConnection(connectionUrl);
 				String select = "SELECT * FROM MatchPessoaInst WHERE "+campo+" = "+valor+";";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
+import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchComum;
+import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchPessoaInst;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,9 @@ public class TelaUserController {
 	
 	@FXML
 	public Label mensagem;
+	
+	@FXML
+	public Label matchMessage;
 	
 	private ResultSet user;
 	
@@ -72,6 +77,36 @@ public class TelaUserController {
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
+	}
+	
+	public void setarMatchs() throws SQLException {
+		if (type.equals("Doador")) {
+			ResultSet matchs1 = CRUDMatchComum.selectMatchComum("email_doador", user.getString(1));
+			ResultSet matchs2 = CRUDMatchPessoaInst.selectMatchPessoaInst("email_doador", user.getString(1));
+			if (matchs1 == null && matchs2==null) {
+				matchMessage.setText("Você ainda não possui matchs");
+			} else {
+				
+			}
+		} else {
+			if (type.equals("Receptor")) {
+				ResultSet matchs = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
+				if (matchs == null) {
+					matchMessage.setText("Você ainda não possui matchs");
+				} else {
+					
+				}
+			} else {
+				if (type.equals("Instituição")) {
+					ResultSet matchs = CRUDMatchPessoaInst.selectMatchPessoaInst("email_receptor", user.getString(1));
+					if (matchs == null) {
+						matchMessage.setText("Você ainda não possui matchs");
+					} else {
+						
+					}
+				}
+			}
+		}
 	}
 	
 }

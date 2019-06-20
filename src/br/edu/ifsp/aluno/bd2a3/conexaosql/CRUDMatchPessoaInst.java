@@ -119,7 +119,7 @@ public class CRUDMatchPessoaInst {
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String select = "SELECT * FROM MatchPessoaInst WHERE "+campo+" = "+valor+";";
+				String select = "SELECT * FROM MatchPessoaInst WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);
 				return rs;

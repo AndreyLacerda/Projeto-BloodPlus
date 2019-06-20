@@ -119,7 +119,7 @@ public class CRUDMatchComum {
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
-				String select = "SELECT * FROM MatchComum WHERE "+campo+" = "+valor+";";
+				String select = "SELECT * FROM MatchComum WHERE "+campo+" = '"+valor+"';";
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(select);				
 				return rs;

@@ -8,6 +8,11 @@ import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchComum;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchPessoaInst;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorComum;
+import br.edu.ifsp.aluno.bd2a3.factories.MatchComumFactory;
+import br.edu.ifsp.aluno.bd2a3.factories.MatchInstFactory;
+import br.edu.ifsp.aluno.bd2a3.matchs.MatchComum;
+import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -193,6 +198,13 @@ public class TelaConfigController {
 			CRUDDoador.updateDoador2(user.getString(1), "pulmao", pulmao.isSelected());
 			CRUDDoador.updateDoador2(user.getString(1), "pancreas", pancreas.isSelected());
 			this.user = CRUDDoador.selectDoador3("email", user.getString(1));
+			
+			CRUDMatchComum.deleteMatchDoador(user.getString(1));
+			CRUDMatchPessoaInst.deleteMatchDoador(user.getString(1));
+			Doador doador = new Doador (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(19), user.getString(6), user.getString(7), user.getString(9), user.getString(16), user.getString(17), Float.parseFloat(user.getString(8)), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true);
+			MatchComumFactory.criarMatchDoador(doador);
+			MatchInstFactory.criarMatchDoador(doador);
+			
 		} else {
 			if (type.equals("Receptor")) {
 				if (email.getText() != null && !email.getText().trim().isEmpty()) {
@@ -224,6 +236,11 @@ public class TelaConfigController {
 				CRUDReceptorComum.updateReceptor2(user.getString(1), "pulmao", pulmao.isSelected());
 				CRUDReceptorComum.updateReceptor2(user.getString(1), "pancreas", pancreas.isSelected());
 				this.user = CRUDReceptorComum.selectReceptor3("email", user.getString(1));
+				
+				CRUDMatchComum.deleteMatchReceptor(user.getString(1));
+				ReceptorComum receptor = new ReceptorComum (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(13), user.getString(6), user.getString(7), Float.parseFloat(user.getString(8)), user.getString(9), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(10), user.getString(19));
+				MatchComumFactory.criarMatchReceptor(receptor);
+				
 			}
 		}
 		

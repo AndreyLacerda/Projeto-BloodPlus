@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchPessoaInst;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorJuridico;
+import br.edu.ifsp.aluno.bd2a3.factories.MatchInstFactory;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -177,6 +179,11 @@ public class TelaConfigControllerInst {
 		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "pulmao", pulmao.isSelected());
 		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "pancreas", pancreas.isSelected());
 		this.user = CRUDReceptorJuridico.selectReceptor3("email", user.getString(1));
+		
+		CRUDMatchPessoaInst.deleteMatchReceptor(user.getString(1));
+		
+		ReceptorJuridico receptor = new ReceptorJuridico(user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(6), user.getString(7), user.getString(8), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(16));
+		MatchInstFactory.criarMatchReceptor(receptor);
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();

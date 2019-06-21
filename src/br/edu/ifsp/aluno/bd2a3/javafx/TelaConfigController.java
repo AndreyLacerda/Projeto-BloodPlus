@@ -10,7 +10,6 @@ import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchPessoaInst;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorComum;
 import br.edu.ifsp.aluno.bd2a3.factories.MatchComumFactory;
 import br.edu.ifsp.aluno.bd2a3.factories.MatchInstFactory;
-import br.edu.ifsp.aluno.bd2a3.matchs.MatchComum;
 import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
 import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
 import javafx.collections.FXCollections;
@@ -240,7 +239,6 @@ public class TelaConfigController {
 				CRUDMatchComum.deleteMatchReceptor(user.getString(1));
 				ReceptorComum receptor = new ReceptorComum (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(13), user.getString(6), user.getString(7), Float.parseFloat(user.getString(8)), user.getString(9), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(10), user.getString(19));
 				MatchComumFactory.criarMatchReceptor(receptor);
-				
 			}
 		}
 		

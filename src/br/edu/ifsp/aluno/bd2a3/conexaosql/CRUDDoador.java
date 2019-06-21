@@ -1,7 +1,6 @@
 package br.edu.ifsp.aluno.bd2a3.conexaosql;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -188,14 +187,12 @@ public class CRUDDoador {
 	}
 	
 	public static ResultSet selectDoador3 (String campo, String valor) {
-		Statement stmt = null;
 		
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
 				String select = "SELECT * FROM Doador WHERE "+campo+" = '"+valor+"';";
-				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(select);
+				ResultSet rs = conn.createStatement().executeQuery(select);
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

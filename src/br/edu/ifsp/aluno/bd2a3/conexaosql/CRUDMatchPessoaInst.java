@@ -114,14 +114,12 @@ public class CRUDMatchPessoaInst {
 	}
 	
 	public static ResultSet selectMatchPessoaInst(String campo, String valor) {
-		Statement stmt = null;
-		
+
 		Connection conn = TesteConnectionSQLite.checarConexão();
 		if (conn != null) {
 			try{
 				String select = "SELECT * FROM MatchPessoaInst WHERE "+campo+" = '"+valor+"';";
-				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(select);
+				ResultSet rs = conn.createStatement().executeQuery(select);
 				return rs;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

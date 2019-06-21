@@ -21,7 +21,7 @@ public class TesteConnectionSQLite {
 		String connectionUrl = "jdbc:sqlite:DataBase/BloodPlusDB.db";
 
 		PreparedStatement pstmt = null;
-		Statement stmt = null;
+		Statement stmte = null;
 		ResultSet rs = null;
 		
 		try {			
@@ -35,8 +35,8 @@ public class TesteConnectionSQLite {
 			pstmt.execute();
 			
 			System.out.println("Insert com sucesso");
-			stmt = conne.createStatement();
-			rs = stmt.executeQuery(SQL);
+			stmte = conne.createStatement();
+			rs = stmte.executeQuery(SQL);
 
 			while (rs.next()) {
 				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) );

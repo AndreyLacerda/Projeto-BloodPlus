@@ -44,7 +44,7 @@ public class TelaUserController {
 		user = rs;
 		mensagem.setText("Olá, "+user.getString(3)+"!");
 		type = tipo;
-		setarMatchs();
+		//setarMatchs();
 	}
 	
 	public void config(ActionEvent event) throws IOException, SQLException {
@@ -85,69 +85,69 @@ public class TelaUserController {
 		stage.show();
 	}
 	
-	public void setarMatchs() throws SQLException {
-		if (type.equals("Doador")) {
-			ResultSet matchs1 = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
-			ResultSet matchs2 = CRUDMatchPessoaInst.selectMatchPessoaInst("email_doador", user.getString(1));
-			if (matchs1.next() == false && matchs2.next() == false) {
-				matchMessage.setText("Você ainda não possui matchs");
-			} else {
-				while(matchs1.next()) {
-					ResultSet receptor = CRUDReceptorComum.selectReceptor3("email", matchs1.getString(2));
-					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));	
-					Label receptorLabel = new Label(receptor.getString(3)+" "+receptor.getString(4));
-					Label doacaoLabel = new Label(matchs1.getString(3));
-					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
-					matchs1.next();
-				}
-				matchs1.close();
-				while(matchs2.next()) {
-					ResultSet receptor = CRUDReceptorComum.selectReceptor3("email", matchs2.getString(2));
-					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));	
-					Label receptorLabel = new Label(receptor.getString(3)+" "+receptor.getString(4));
-					Label doacaoLabel = new Label(matchs2.getString(3));
-					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
-					matchs2.next();
-				}
-				matchs2.close();
-			}
-		} else {
-			if (type.equals("Receptor")) {
-				ResultSet matchs = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
-				if (matchs == null) {
-					matchMessage.setText("Você ainda não possui matchs");
-				} else {
-					while(matchs.next()) {
-						ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
-						Label receptorLabel = new Label(user.getString(3)+" "+user.getString(4));	
-						Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
-						Label doacaoLabel = new Label(matchs.getString(3));
-						areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
-						doador.close();
-						matchs.next();
-					}
-					matchs.close();
-				}
-			} else {
-				if (type.equals("Instituição")) {
-					ResultSet matchs = CRUDMatchPessoaInst.selectMatchPessoaInst("email_receptorJuridico", user.getString(1));
-					if (matchs == null) {
-						matchMessage.setText("Você ainda não possui matchs");
-					} else {
-						while(matchs != null) {
-							ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
-							Label receptorLabel = new Label(user.getString(3));	
-							Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
-							Label doacaoLabel = new Label(matchs.getString(3));
-							areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
-							doador.close();
-							matchs.next();
-						}
-						matchs.close();
-					}
-				}
-			}
-		}
-	}
+//	public void setarMatchs() throws SQLException {
+//		if (type.equals("Doador")) {
+//			ResultSet matchs1 = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
+//			ResultSet matchs2 = CRUDMatchPessoaInst.selectMatchPessoaInst("email_doador", user.getString(1));
+//			if (matchs1.next() == false && matchs2.next() == false) {
+//				matchMessage.setText("Você ainda não possui matchs");
+//			} else {
+//				while(matchs1.next()) {
+//					ResultSet receptor = CRUDReceptorComum.selectReceptor3("email", matchs1.getString(2));
+//					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));	
+//					Label receptorLabel = new Label(receptor.getString(3)+" "+receptor.getString(4));
+//					Label doacaoLabel = new Label(matchs1.getString(3));
+//					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
+//					matchs1.next();
+//				}
+//				matchs1.close();
+//				while(matchs2.next()) {
+//					ResultSet receptor = CRUDReceptorComum.selectReceptor3("email", matchs2.getString(2));
+//					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));	
+//					Label receptorLabel = new Label(receptor.getString(3)+" "+receptor.getString(4));
+//					Label doacaoLabel = new Label(matchs2.getString(3));
+//					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
+//					matchs2.next();
+//				}
+//				matchs2.close();
+//			}
+//		} else {
+//			if (type.equals("Receptor")) {
+//				ResultSet matchs = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
+//				if (matchs == null) {
+//					matchMessage.setText("Você ainda não possui matchs");
+//				} else {
+//					while(matchs.next()) {
+//						ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
+//						Label receptorLabel = new Label(user.getString(3)+" "+user.getString(4));	
+//						Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
+//						Label doacaoLabel = new Label(matchs.getString(3));
+//						areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
+//						doador.close();
+//						matchs.next();
+//					}
+//					matchs.close();
+//				}
+//			} else {
+//				if (type.equals("Instituição")) {
+//					ResultSet matchs = CRUDMatchPessoaInst.selectMatchPessoaInst("email_receptorJuridico", user.getString(1));
+//					if (matchs == null) {
+//						matchMessage.setText("Você ainda não possui matchs");
+//					} else {
+//						while(matchs != null) {
+//							ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
+//							Label receptorLabel = new Label(user.getString(3));	
+//							Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
+//							Label doacaoLabel = new Label(matchs.getString(3));
+//							areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
+//							doador.close();
+//							matchs.next();
+//						}
+//						matchs.close();
+//					}
+//				}
+//			}
+//		}
+//	}
 	
 }

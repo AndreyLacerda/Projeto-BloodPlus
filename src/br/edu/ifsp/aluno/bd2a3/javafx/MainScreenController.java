@@ -69,6 +69,7 @@ public class MainScreenController {
 			ResultSet rs = CRUDDoador.loginDoador(email.getText(), pass.getText());
 			if (rs.next() == false) {
 				error.setText("Email ou senha inválidos");
+				error.setTextFill(Color.web("c30f0f"));
 				rs.close();
 			} else {
 				Stage stage = (Stage) login.getScene().getWindow();
@@ -87,6 +88,7 @@ public class MainScreenController {
 				ResultSet rs = CRUDReceptorComum.loginReceptor(email.getText(), pass.getText());
 				if(rs.next() == false) {
 					error.setText("Email ou senha inválidos");
+					error.setTextFill(Color.web("c30f0f"));
 					rs.close();
 				} else {
 					Stage stage = (Stage) login.getScene().getWindow();
@@ -105,6 +107,7 @@ public class MainScreenController {
 					ResultSet rs = CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText());
 					if(rs.next() == false) {
 						error.setText("Email ou senha inválidos");
+						error.setTextFill(Color.web("c30f0f"));
 						rs.close();
 					} else {
 						Stage stage = (Stage) login.getScene().getWindow();

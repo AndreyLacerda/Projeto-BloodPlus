@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDDoador;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorComum;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorJuridico;
+import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,11 +75,12 @@ public class MainScreenController {
 				error.setTextFill(Color.web("c30f0f"));
 				rs.close();
 			} else {
+				Doador doador = new Doador (rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(19), rs.getString(6), rs.getString(7), rs.getString(9), rs.getString(16), rs.getString(17), Float.parseFloat(rs.getString(8)), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12), rs.getBoolean(13), rs.getBoolean(14), rs.getBoolean(15), true);
 				Stage stage = (Stage) login.getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 				TelaUserController telaUser = (TelaUserController)loader.getController();
-				telaUser.setResultSetLabelType(rs, "Doador");
+				telaUser.setResultSetLabelType(doador, null, null, "Doador");
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -91,11 +95,12 @@ public class MainScreenController {
 					error.setTextFill(Color.web("c30f0f"));
 					rs.close();
 				} else {
+					ReceptorComum receptor = new ReceptorComum (rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13), rs.getString(6), rs.getString(7), Float.parseFloat(rs.getString(8)), rs.getString(9), rs.getBoolean(12), rs.getBoolean(16), rs.getBoolean(15), rs.getBoolean(18), rs.getBoolean(14), rs.getBoolean(17), true, rs.getString(10), rs.getString(19));
 					Stage stage = (Stage) login.getScene().getWindow();
 					FXMLLoader loader = new FXMLLoader();
 					Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 					TelaUserController telaUser = (TelaUserController)loader.getController();
-					telaUser.setResultSetLabelType(rs, "Receptor");
+					telaUser.setResultSetLabelType(null, receptor, null, "Receptor");
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
 					stage.setResizable(false);
@@ -104,25 +109,31 @@ public class MainScreenController {
 			}
 			else
 				if (user.equals("Instituição")) {
-					ResultSet rs = CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText());
-					if(rs.next() == false) {
-						error.setText("Email ou senha inválidos");
-						error.setTextFill(Color.web("c30f0f"));
-						rs.close();
-					} else {
-						Stage stage = (Stage) login.getScene().getWindow();
-						FXMLLoader loader = new FXMLLoader();
-						Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
-						TelaUserController telaUser = (TelaUserController)loader.getController();
-						telaUser.setResultSetLabelType(rs, "Instituição");
-						Scene scene = new Scene(root);
-						stage.setScene(scene);
-						stage.setResizable(false);
-						stage.show();
+					if(email.getText() != null && pass.getText() != null) {
+						ResultSet rs = CRUDReceptorJuridico.loginReceptor(email.getText(), pass.getText());
+						if(rs.next() == false) {
+							error.setText("Email ou senha inválidos");
+							error.setTextFill(Color.web("c30f0f"));
+							rs.close();
+						} else {
+							ReceptorJuridico receptor = new ReceptorJuridico(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(9), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12), rs.getBoolean(13), rs.getBoolean(14), true, rs.getString(16));
+							Stage stage = (Stage) login.getScene().getWindow();
+							FXMLLoader loader = new FXMLLoader();
+							Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
+							TelaUserController telaUser = (TelaUserController)loader.getController();
+							telaUser.setResultSetLabelType(null, null, receptor, "Instituição");
+							Scene scene = new Scene(root);
+							stage.setScene(scene);
+							stage.setResizable(false);
+							stage.show();
+						}
 					}
+					else
+						System.out.println("Ocorreu um erro. Por favor tente novamente mais tarde.");
+				} else {
+					error.setText("Por favor insira os dados!");
+					error.setTextFill(Color.web("c30f0f"));
 				}
-				else
-					System.out.println("Ocorreu um erro. Por favor tente novamente mais tarde.");
 	}
 	
 	public void cadastro(ActionEvent event) throws IOException {

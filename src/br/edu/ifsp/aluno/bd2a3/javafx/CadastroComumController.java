@@ -164,14 +164,14 @@ public class CadastroComumController {
 		String result = "a";
 		try {
 			if (label1.getText() != null && label1.getText().equals("Cadastro de Doador")){
-				if (regiao == null || tipo_sangue == null || peso == null || dt_nasc == null) {
+				if (regiao.getValue() == null || tipo_sangue.getValue() == null || peso.getText() == null || dt_nasc.getText() == null) {
 					result = "Por favor preencha todos os campos!";
 				} else {
 					result = DoadorFactory.buildarDoador(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getText(), cpf.getText(), tel.getText(), cel.getText(), tipo_sangue.getValue(), regiao.getValue(), endereco.getText(), Float.parseFloat(peso.getText()), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());
 				}
 		} else
 				if (label1.getText() != null && label1.getText().equals("Cadastro de Receptor")){
-					if (regiao == null || tipo_sangue == null || peso == null || dt_nasc == null) {
+					if (regiao.getValue() == null || tipo_sangue.getValue() == null || peso.getText() == null || dt_nasc.getText() == null) {
 						result = "Por favor preencha todos os campos de forma correta!";
 					} else
 						result = ReceptorComumFactory.buildarReceptorComum(email.getText(), senha.getText(), nome.getText(), sobrenome.getText(), dt_nasc.getText(), cpf.getText(), tel.getText(), cel.getText(), Float.parseFloat(peso.getText()), tipo_sangue.getValue(), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, regiao.getValue(), endereco.getText(), hiv.isSelected(), hepatite.isSelected(), htlv.isSelected(), chagas.isSelected(), hepatite.isSelected());

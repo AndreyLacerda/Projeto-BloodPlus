@@ -9,6 +9,9 @@ import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchComum;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDMatchPessoaInst;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorComum;
 import br.edu.ifsp.aluno.bd2a3.conexaosql.CRUDReceptorJuridico;
+import br.edu.ifsp.aluno.bd2a3.usuarios.Doador;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorComum;
+import br.edu.ifsp.aluno.bd2a3.usuarios.ReceptorJuridico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class TelaUserController {
@@ -38,14 +40,28 @@ public class TelaUserController {
 	@FXML
 	public AnchorPane areaMatchs;
 	
-	private ResultSet user;
+	private Doador doador;
+	
+	private ReceptorComum receptor;
+	
+	private ReceptorJuridico inst;
 	
 	private String type;
 	
-	public void setResultSetLabelType(ResultSet  rs, String tipo) throws SQLException {
-		user = rs;
-		mensagem.setText("Olá, "+user.getString(3)+"!");
+	public void setResultSetLabelType(Doador doador ,ReceptorComum receptor, ReceptorJuridico inst, String tipo) throws SQLException {
 		type = tipo;
+		if (type.equals("Doador")) {
+			this.doador = doador;
+			mensagem.setText("Olá, "+doador.getNome()+"!");
+		} else {
+			if (type.equals("Receptor")) {
+				this.receptor = receptor;
+				mensagem.setText("Olá, "+receptor.getNome()+"!");
+			} else {
+				this.inst = inst;
+				mensagem.setText("Olá, "+inst.getNome_instituição()+"!");
+			}
+		}
 		//setarMatchs();
 	}
 	
@@ -55,7 +71,11 @@ public class TelaUserController {
 			FXMLLoader loader = new FXMLLoader();
 			ScrollPane root = loader.load(getClass().getResource("TelaConfig.fxml").openStream());
 			TelaConfigController telaConfig = (TelaConfigController)loader.getController();
-			telaConfig.setResultSetType(user, type);
+			if(type.equals("Doador")) {
+				telaConfig.setResultSetType(doador, null, type);
+			} else {
+				telaConfig.setResultSetType(null, receptor, type);
+			}
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setResizable(false);
@@ -66,7 +86,7 @@ public class TelaUserController {
 				FXMLLoader loader = new FXMLLoader();
 				ScrollPane root = loader.load(getClass().getResource("TelaConfigInst.fxml").openStream());
 				TelaConfigControllerInst telaConfig = (TelaConfigControllerInst)loader.getController();
-				telaConfig.setResultSet(user);
+				telaConfig.setResultSet(inst);
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -76,11 +96,9 @@ public class TelaUserController {
 	}
 	
 	public void logout(ActionEvent event) throws IOException, SQLException {
-		user.close();
 		Stage stage = (Stage) logout.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));
-		MainScreenController main = (MainScreenController)loader.getController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -89,14 +107,14 @@ public class TelaUserController {
 	
 	public void setarMatchs() throws SQLException {
 		if (type.equals("Doador")) {
-			ResultSet matchs1 = CRUDMatchComum.selectMatchComum("email_doador", user.getString(1));
-			ResultSet matchs2 = CRUDMatchPessoaInst.selectMatchPessoaInst("email_doador", user.getString(1));
+			ResultSet matchs1 = CRUDMatchComum.selectMatchComum("email_doador", doador.getEmail());
+			ResultSet matchs2 = CRUDMatchPessoaInst.selectMatchPessoaInst("email_doador", doador.getEmail());
 			if (matchs1.getString(1) == null && matchs2.getString(1) == null) {
 				matchMessage.setText("Você ainda não possui matchs");
 			} else {
 				while(matchs1.getString(1) != null) {
 					ResultSet receptor = CRUDReceptorComum.selectReceptor3("email", matchs1.getString(2));
-					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));	
+					Label doadorLabel = new Label(doador.getNome()+" "+doador.getSobrenome());	
 					Label receptorLabel = new Label(receptor.getString(3)+" "+receptor.getString(4));
 					Label doacaoLabel = new Label(matchs1.getString(3));
 					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
@@ -105,7 +123,7 @@ public class TelaUserController {
 				matchs1.close();
 				while(matchs2.getString(1) != null) {
 					ResultSet receptor = CRUDReceptorJuridico.selectReceptor3("email", matchs2.getString(2));
-					Label doadorLabel = new Label(user.getString(3)+" "+user.getString(4));
+					Label doadorLabel = new Label(doador.getNome()+" "+doador.getSobrenome());
 					Label receptorLabel = new Label(receptor.getString(3));
 					Label doacaoLabel = new Label(matchs2.getString(3));
 					areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
@@ -115,13 +133,13 @@ public class TelaUserController {
 			}
 		} else {
 			if (type.equals("Receptor")) {
-				ResultSet matchs = CRUDMatchComum.selectMatchComum("email_receptor", user.getString(1));
+				ResultSet matchs = CRUDMatchComum.selectMatchComum("email_receptor", receptor.getEmail());
 				if (matchs == null) {
 					matchMessage.setText("Você ainda não possui matchs");
 				} else {
 					while(matchs.next()) {
 						ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
-						Label receptorLabel = new Label(user.getString(3)+" "+user.getString(4));	
+						Label receptorLabel = new Label(receptor.getNome()+" "+receptor.getSobrenome());	
 						Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
 						Label doacaoLabel = new Label(matchs.getString(3));
 						areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);
@@ -132,13 +150,13 @@ public class TelaUserController {
 				}
 			} else {
 				if (type.equals("Instituição")) {
-					ResultSet matchs = CRUDMatchPessoaInst.selectMatchPessoaInst("email_receptorJuridico", user.getString(1));
+					ResultSet matchs = CRUDMatchPessoaInst.selectMatchPessoaInst("email_receptorJuridico", inst.getEmail());
 					if (matchs == null) {
 						matchMessage.setText("Você ainda não possui matchs");
 					} else {
 						while(matchs != null) {
 							ResultSet doador = CRUDDoador.selectDoador3("email", matchs.getString(1));
-							Label receptorLabel = new Label(user.getString(3));	
+							Label receptorLabel = new Label(inst.getNome_instituição());	
 							Label doadorLabel = new Label(doador.getString(3)+" "+doador.getString(4));
 							Label doacaoLabel = new Label(matchs.getString(3));
 							areaMatchs.getChildren().addAll(doadorLabel, receptorLabel, doacaoLabel);

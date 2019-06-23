@@ -93,65 +93,108 @@ public class TelaConfigController {
 	@FXML
 	private ChoiceBox<String> tipo_sangue;
 	
-	private ResultSet user;
+	private Doador doador;
+	
+	private ReceptorComum receptor;
 	
 	private String type;
 	
-	public void setResultSetType(ResultSet  rs, String tipo) throws SQLException {
-		user = rs;
+	public void setResultSetType(Doador doador, ReceptorComum receptor, String tipo) throws SQLException {
 		type = tipo;
+		this.doador = doador;
+		this.receptor = receptor;
 		setPlaceHolders();
 	}
 	
 	private void setPlaceHolders() throws SQLException {
-		email.setPromptText(user.getString(1));
-		nome.setPromptText(user.getString(3));
-		sobrenome.setPromptText(user.getString(4));
-		tel.setPromptText(user.getString(6));
-		cel.setPromptText(user.getString(7));
-		peso.setPromptText(user.getString(8));
-		tipo_sangue.setValue(user.getString(9));
-		regiao.setValue(user.getString(16));
-		endereco.setPromptText(user.getString(17));
-		
-		if (user.getString(10).equals("1") || user.getString(10).equals("true")) {
-			sangue.setSelected(true);
+		if (type.equals("Doador")) {
+			email.setPromptText(doador.getEmail());
+			nome.setPromptText(doador.getNome());
+			sobrenome.setPromptText(doador.getSobrenome());
+			tel.setPromptText(doador.getTel());
+			cel.setPromptText(doador.getCelular());
+			peso.setPromptText(""+doador.getPeso());
+			tipo_sangue.setValue(doador.getTipo_sangue());
+			regiao.setValue(doador.getRegiao());
+			endereco.setPromptText(doador.getEndereco());
+			
+			if (doador.isSangue() == true) {
+				sangue.setSelected(true);
+			} else {
+				sangue.setSelected(false);
+			}
+			if (doador.isRim() == true) {
+				rim.setSelected(true);
+			} else {
+				rim.setSelected(false);
+			}
+			if (doador.isFigado() == true) {
+				figado.setSelected(true);
+			} else {
+				figado.setSelected(false);
+			}
+			if (doador.isMedula() == true) {
+				medula.setSelected(true);
+			} else {
+				medula.setSelected(false);
+			}
+			if (doador.isPulmao() == true) {
+				pulmao.setSelected(true);
+			} else {
+				pulmao.setSelected(false);
+			}
+			if (doador.isPancreas() == true) {
+				pancreas.setSelected(true);
+			} else {
+				pancreas.setSelected(false);
+			}
 		} else {
-			sangue.setSelected(false);
-		}
-		if (user.getString(11).equals("1") || user.getString(11).equals("true")) {
-			rim.setSelected(true);
-		} else {
-			rim.setSelected(false);
-		}
-		if (user.getString(12).equals("1") || user.getString(12).equals("true")) {
-			figado.setSelected(true);
-		} else {
-			figado.setSelected(false);
-		}
-		if (user.getString(13).equals("1") || user.getString(13).equals("true")) {
-			medula.setSelected(true);
-		} else {
-			medula.setSelected(false);
-		}
-		if (user.getString(14).equals("1") || user.getString(14).equals("true")) {
-			pulmao.setSelected(true);
-		} else {
-			pulmao.setSelected(false);
-		}
-		if (user.getString(15).equals("1") || user.getString(15).equals("true")) {
-			pancreas.setSelected(true);
-		} else {
-			pancreas.setSelected(false);
+			email.setPromptText(receptor.getEmail());
+			nome.setPromptText(receptor.getNome());
+			sobrenome.setPromptText(receptor.getSobrenome());
+			tel.setPromptText(receptor.getTel());
+			cel.setPromptText(receptor.getCelular());
+			peso.setPromptText(""+receptor.getPeso());
+			tipo_sangue.setValue(receptor.getTipo_sangue());
+			regiao.setValue(receptor.getRegiao());
+			endereco.setPromptText(receptor.getEndereco());
+			
+			if (receptor.isSangue() == true) {
+				sangue.setSelected(true);
+			} else {
+				sangue.setSelected(false);
+			}
+			if (receptor.isRim() == true) {
+				rim.setSelected(true);
+			} else {
+				rim.setSelected(false);
+			}
+			if (receptor.isFigado() == true) {
+				figado.setSelected(true);
+			} else {
+				figado.setSelected(false);
+			}
+			if (receptor.isMedula() == true) {
+				medula.setSelected(true);
+			} else {
+				medula.setSelected(false);
+			}
+			if (receptor.isPulmao() == true) {
+				pulmao.setSelected(true);
+			} else {
+				pulmao.setSelected(false);
+			}
+			if (receptor.isPancreas() == true) {
+				pancreas.setSelected(true);
+			} else {
+				pancreas.setSelected(false);
+			}
 		}
 	}
 	
 	@FXML
 	public void initialize() throws SQLException {
 		loadData();
-		if (user != null) {
-			user.close();
-		}
 	}
 	
 	private void loadData() {
@@ -183,78 +226,83 @@ public class TelaConfigController {
 	
 	public void salvarAlteracoes(ActionEvent event) throws SQLException, IOException {
 		if (type.equals("Doador")) {
+			String emailAtualizado = doador.getEmail();
 			if (email.getText() != null && !email.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "email", email.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "email", email.getText());
+				emailAtualizado = email.getText();
 			}
 			if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "senha", senha.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "senha", senha.getText());
 			}
 			if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "nome", nome.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "nome", nome.getText());
 			}
 			if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
-				CRUDReceptorComum.updateReceptor(user.getString(1), "sobrenome", sobrenome.getText());
+				CRUDReceptorComum.updateReceptor(doador.getEmail(), "sobrenome", sobrenome.getText());
 			}
 			if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "tel", tel.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "tel", tel.getText());
 			}
 			if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "cel", cel.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "cel", cel.getText());
 			}
 			if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(user.getString(1), "endereco", endereco.getText());
+				CRUDDoador.updateDoador(doador.getEmail(), "endereco", endereco.getText());
 			}
-			CRUDDoador.updateDoador(user.getString(1), "regiao", regiao.getValue());
-			CRUDDoador.updateDoador2(user.getString(1), "sangue", sangue.isSelected());
-			CRUDDoador.updateDoador2(user.getString(1), "rim", rim.isSelected());
-			CRUDDoador.updateDoador2(user.getString(1), "figado", figado.isSelected());
-			CRUDDoador.updateDoador2(user.getString(1), "medula", rim.isSelected());
-			CRUDDoador.updateDoador2(user.getString(1), "pulmao", pulmao.isSelected());
-			CRUDDoador.updateDoador2(user.getString(1), "pancreas", pancreas.isSelected());
-			String email = user.getString(1);
-			user.close();
-			user = CRUDDoador.selectDoador3("email", email);
+			CRUDDoador.updateDoador(emailAtualizado, "regiao", regiao.getValue());
+			CRUDDoador.updateDoador2(emailAtualizado, "sangue", sangue.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "rim", rim.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "figado", figado.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "medula", rim.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "pulmao", pulmao.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "pancreas", pancreas.isSelected());
+			ResultSet user = CRUDDoador.selectDoador3("email", emailAtualizado);
 			
-			CRUDMatchComum.deleteMatchDoador(user.getString(1));
-			CRUDMatchPessoaInst.deleteMatchDoador(user.getString(1));
-			Doador doador = new Doador (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(19), user.getString(6), user.getString(7), user.getString(9), user.getString(16), user.getString(17), Float.parseFloat(user.getString(8)), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true);
+			CRUDMatchComum.deleteMatchDoador(doador.getEmail());
+			CRUDMatchPessoaInst.deleteMatchDoador(doador.getEmail());
+			Doador doadorNovo = new Doador (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(19), user.getString(6), user.getString(7), user.getString(9), user.getString(16), user.getString(17), Float.parseFloat(user.getString(8)), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true);
+			this.doador = doadorNovo;
 			MatchComumFactory.criarMatchDoador(doador);
 			MatchInstFactory.criarMatchDoador(doador);
 			
 		} else {
 			if (type.equals("Receptor")) {
+				String emailAtualizado = receptor.getEmail();
 				if (email.getText() != null && !email.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "email", email.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "email", email.getText());
+					emailAtualizado = email.getText();
 				}
 				if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "senha", senha.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "senha", senha.getText());
 				}
 				if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "nome", nome.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "nome", nome.getText());
 				}
 				if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "sobrenome", sobrenome.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "sobrenome", sobrenome.getText());
 				}
 				if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "tel", tel.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "tel", tel.getText());
 				}
 				if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "cel", cel.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "cel", cel.getText());
 				}
 				if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(user.getString(1), "endereco", endereco.getText());
+					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "endereco", endereco.getText());
 				}
-				CRUDReceptorComum.updateReceptor(user.getString(1), "regiao", regiao.getValue());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "sangue", sangue.isSelected());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "rim", rim.isSelected());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "figado", figado.isSelected());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "medula", rim.isSelected());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "pulmao", pulmao.isSelected());
-				CRUDReceptorComum.updateReceptor2(user.getString(1), "pancreas", pancreas.isSelected());
-				this.user = CRUDReceptorComum.selectReceptor3("email", user.getString(1));
+				CRUDReceptorComum.updateReceptor(emailAtualizado, "regiao", regiao.getValue());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "sangue", sangue.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "rim", rim.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "figado", figado.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "medula", rim.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "pulmao", pulmao.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "pancreas", pancreas.isSelected());
+				ResultSet user = CRUDReceptorComum.selectReceptor3("email", emailAtualizado);
 				
 				CRUDMatchComum.deleteMatchReceptor(user.getString(1));
-				ReceptorComum receptor = new ReceptorComum (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(13), user.getString(6), user.getString(7), Float.parseFloat(user.getString(8)), user.getString(9), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(10), user.getString(19));
+				ReceptorComum receptorNovo = new ReceptorComum (user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(13), user.getString(6), user.getString(7), Float.parseFloat(user.getString(8)), user.getString(9), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(10), user.getString(19));
+				this.receptor = receptorNovo;
+				user.close();
 				MatchComumFactory.criarMatchReceptor(receptor);
 			}
 		}
@@ -263,7 +311,7 @@ public class TelaConfigController {
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
-		telaUser.setResultSetLabelType(user, "Instituição");
+		telaUser.setResultSetLabelType(doador, receptor, null, type);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -272,10 +320,9 @@ public class TelaConfigController {
 	
 	public void excluir(ActionEvent event) throws SQLException, IOException {
 		if (type.equals("Doador")) {
-			CRUDMatchComum.deleteMatchDoador(user.getString(1));
-			CRUDMatchPessoaInst.deleteMatchDoador(user.getString(1));
-			CRUDDoador.deleteDoador(user.getString(1));
-			user.close();
+			CRUDMatchComum.deleteMatchDoador(doador.getEmail());
+			CRUDMatchPessoaInst.deleteMatchDoador(doador.getEmail());
+			CRUDDoador.deleteDoador(doador.getEmail());
 			Stage stage = (Stage) excluir.getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
 			Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -287,9 +334,8 @@ public class TelaConfigController {
 			stage.show();
 		} else {
 			if (type.equals("Receptor")) {
-				CRUDMatchComum.deleteMatchReceptor(user.getString(1));
-				CRUDReceptorComum.deleteReceptor(user.getString(1));
-				user.close();
+				CRUDMatchComum.deleteMatchReceptor(receptor.getEmail());
+				CRUDReceptorComum.deleteReceptor(receptor.getEmail());
 				Stage stage = (Stage) excluir.getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -308,7 +354,7 @@ public class TelaConfigController {
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
-		telaUser.setResultSetLabelType(user, type);
+		telaUser.setResultSetLabelType(doador, receptor, null, type);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);

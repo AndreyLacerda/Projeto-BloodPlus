@@ -83,38 +83,38 @@ public class TelaConfigControllerInst {
 	@FXML
 	private ChoiceBox<String> tipo_sangue;
 	
-	private ResultSet user;
+	private ReceptorJuridico receptor;
 	
-	public void setResultSet(ResultSet  rs) throws SQLException {
-		user = rs;
+	public void setResultSet(ReceptorJuridico  rs) throws SQLException {
+		receptor = rs;
 		setPlaceHolders();
 	}
 	
 	private void setPlaceHolders() throws SQLException {
-		email.setPromptText(user.getString(1));
-		nome.setPromptText(user.getString(3));
-		tel1.setPromptText(user.getString(5));
-		tel2.setPromptText(user.getString(6));
-		tipo_sangue.setValue(user.getString(16));
-		regiao.setValue(user.getString(7));
-		endereco.setPromptText(user.getString(8));
+		email.setPromptText(receptor.getEmail());
+		nome.setPromptText(receptor.getNome_instituição());
+		tel1.setPromptText(receptor.getTel1());
+		tel2.setPromptText(receptor.getTel2());
+		tipo_sangue.setValue(receptor.getMain_tipo_sangue());
+		regiao.setValue(receptor.getRegiao());
+		endereco.setPromptText(receptor.getRegiao());
 		
-		if (user.getString(9).equals("1") || user.getString(9).equals("true")) {
+		if (receptor.isSangue() == true) {
 			sangue.setSelected(true);
 		}
-		if (user.getString(10).equals("1") || user.getString(10).equals("true")) {
+		if (receptor.isRim() == true) {
 			rim.setSelected(true);
 		}
-		if (user.getString(11).equals("1") || user.getString(11).equals("true")) {
+		if (receptor.isFigado() == true) {
 			figado.setSelected(true);
 		}
-		if (user.getString(12).equals("1") || user.getString(12).equals("true")) {
+		if (receptor.isMedula() == true) {
 			medula.setSelected(true);
 		}
-		if (user.getString(13).equals("1") || user.getString(13).equals("true")) {
+		if (receptor.isPulmao() == true) {
 			pulmao.setSelected(true);
 		}
-		if (user.getString(14).equals("1") || user.getString(14).equals("true")) {
+		if (receptor.isPancreas() == true) {
 			pancreas.setSelected(true);
 		}
 	}
@@ -152,44 +152,47 @@ public class TelaConfigControllerInst {
 	}
 	
 	public void salvarAlteracoes(ActionEvent event) throws SQLException, IOException {
+		String emailAtualizado = receptor.getEmail();
 		if (email.getText() != null && !email.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "email", email.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "email", email.getText());
+			emailAtualizado = email.getText();
 		}
 		if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "senha", senha.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "senha", senha.getText());
 		}
 		if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "nome_instituição", nome.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "nome_instituição", nome.getText());
 		}
 		if (tel1.getText() != null && !tel1.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "tel1", tel1.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "tel1", tel1.getText());
 		}
 		if (tel2.getText() != null && !tel2.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "tel2", tel2.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "tel2", tel2.getText());
 		}
 		if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(user.getString(1), "endereco", endereco.getText());
+			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "endereco", endereco.getText());
 		}
-		CRUDReceptorJuridico.updateReceptor(user.getString(1), "main_tipo_sangue", tipo_sangue.getValue());
-		CRUDReceptorJuridico.updateReceptor(user.getString(1), "regiao", regiao.getValue());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "sangue", sangue.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "rim", rim.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "figado", figado.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "medula", rim.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "pulmao", pulmao.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(user.getString(1), "pancreas", pancreas.isSelected());
-		this.user = CRUDReceptorJuridico.selectReceptor3("email", user.getString(1));
+		CRUDReceptorJuridico.updateReceptor(emailAtualizado, "main_tipo_sangue", tipo_sangue.getValue());
+		CRUDReceptorJuridico.updateReceptor(emailAtualizado, "regiao", regiao.getValue());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "sangue", sangue.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "rim", rim.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "figado", figado.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "medula", rim.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "pulmao", pulmao.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "pancreas", pancreas.isSelected());
+		ResultSet user = CRUDReceptorJuridico.selectReceptor3("email", emailAtualizado);
+		CRUDMatchPessoaInst.deleteMatchReceptor(receptor.getEmail());
 		
-		CRUDMatchPessoaInst.deleteMatchReceptor(user.getString(1));
-		
-		ReceptorJuridico receptor = new ReceptorJuridico(user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(6), user.getString(7), user.getString(8), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(16));
+		ReceptorJuridico receptorNovo = new ReceptorJuridico(user.getString(1), user.getString(2), user.getString(3), user.getString(4), user.getString(5), user.getString(6), user.getString(7), user.getString(8), sangue.isSelected(), rim.isSelected(), figado.isSelected(), medula.isSelected(), pulmao.isSelected(), pancreas.isSelected(), true, user.getString(16));
+		this.receptor = receptorNovo;
+		user.close();
 		MatchInstFactory.criarMatchReceptor(receptor);
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
-		telaUser.setResultSetLabelType(user, "Instituição");
+		telaUser.setResultSetLabelType(null, null, receptor, "Instituição");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -197,9 +200,8 @@ public class TelaConfigControllerInst {
 	}
 	
 	public void excluir(ActionEvent event) throws SQLException, IOException {
-		CRUDMatchPessoaInst.deleteMatchReceptor(user.getString(1));
-		CRUDReceptorJuridico.deleteReceptor(user.getString(1));
-		user.close();
+		CRUDMatchPessoaInst.deleteMatchReceptor(receptor.getEmail());
+		CRUDReceptorJuridico.deleteReceptor(receptor.getEmail());
 		Stage stage = (Stage) excluir.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -216,7 +218,7 @@ public class TelaConfigControllerInst {
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
-		telaUser.setResultSetLabelType(user, "Instituição");
+		telaUser.setResultSetLabelType(null, null, receptor, "Instituição");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);

@@ -99,8 +99,8 @@ public class TelaConfigController {
 	
 	public void setResultSetType(ResultSet  rs, String tipo) throws SQLException {
 		user = rs;
-		setPlaceHolders();
 		type = tipo;
+		setPlaceHolders();
 	}
 	
 	private void setPlaceHolders() throws SQLException {
@@ -116,27 +116,42 @@ public class TelaConfigController {
 		
 		if (user.getString(10).equals("1") || user.getString(10).equals("true")) {
 			sangue.setSelected(true);
+		} else {
+			sangue.setSelected(false);
 		}
 		if (user.getString(11).equals("1") || user.getString(11).equals("true")) {
 			rim.setSelected(true);
+		} else {
+			rim.setSelected(false);
 		}
 		if (user.getString(12).equals("1") || user.getString(12).equals("true")) {
 			figado.setSelected(true);
+		} else {
+			figado.setSelected(false);
 		}
 		if (user.getString(13).equals("1") || user.getString(13).equals("true")) {
 			medula.setSelected(true);
+		} else {
+			medula.setSelected(false);
 		}
 		if (user.getString(14).equals("1") || user.getString(14).equals("true")) {
 			pulmao.setSelected(true);
+		} else {
+			pulmao.setSelected(false);
 		}
 		if (user.getString(15).equals("1") || user.getString(15).equals("true")) {
 			pancreas.setSelected(true);
+		} else {
+			pancreas.setSelected(false);
 		}
 	}
 	
 	@FXML
 	public void initialize() throws SQLException {
 		loadData();
+		if (user != null) {
+			user.close();
+		}
 	}
 	
 	private void loadData() {
@@ -196,7 +211,9 @@ public class TelaConfigController {
 			CRUDDoador.updateDoador2(user.getString(1), "medula", rim.isSelected());
 			CRUDDoador.updateDoador2(user.getString(1), "pulmao", pulmao.isSelected());
 			CRUDDoador.updateDoador2(user.getString(1), "pancreas", pancreas.isSelected());
-			this.user = CRUDDoador.selectDoador3("email", user.getString(1));
+			String email = user.getString(1);
+			user.close();
+			user = CRUDDoador.selectDoador3("email", email);
 			
 			CRUDMatchComum.deleteMatchDoador(user.getString(1));
 			CRUDMatchPessoaInst.deleteMatchDoador(user.getString(1));

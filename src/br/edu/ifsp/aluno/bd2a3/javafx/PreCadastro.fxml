@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.PreCadastroController">
+<AnchorPane maxHeight="542.0" maxWidth="267.0" minHeight="542.0" minWidth="267.0" prefHeight="542.0" prefWidth="267.0" style="-fx-background-color: #352727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.bd2a3.javafx.PreCadastroController">
    <children>
       <Button fx:id="doador" layoutX="66.0" layoutY="126.0" mnemonicParsing="false" onAction="#doadorEvento" prefHeight="48.0" prefWidth="135.0" text="Doador" />
       <Button fx:id="receptor" layoutX="66.0" layoutY="196.0" mnemonicParsing="false" onAction="#receptorEvento" prefHeight="48.0" prefWidth="135.0" text="Receptor" />
       <Button fx:id="insti" layoutX="66.0" layoutY="265.0" mnemonicParsing="false" onAction="#instEvento" prefHeight="48.0" prefWidth="135.0" text="Instituição Médica" />
-      <Label layoutX="47.0" layoutY="73.0" prefHeight="35.0" prefWidth="173.0" text="Tipo de Usuário:">
+      <Label layoutX="47.0" layoutY="73.0" prefHeight="35.0" prefWidth="173.0" text="Tipo de Usuário:" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

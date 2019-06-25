@@ -22,6 +22,7 @@ public class CRUDMatchPessoaInst {
 				
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				stmt.close();
 				return true;
 				
 			} catch(SQLException esql) {
@@ -98,6 +99,7 @@ public class CRUDMatchPessoaInst {
 				String update = "UPDATE MatchPessoaInst SET "+campo+" = "+valor+" WHERE email_doador = "+match.getDoador()+" AND email_receptorJuridico = "+match.getReceptor()+"";
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

@@ -97,7 +97,7 @@ public class TelaConfigControllerInst {
 		tel2.setPromptText(receptor.getTel2());
 		tipo_sangue.setValue(receptor.getMain_tipo_sangue());
 		regiao.setValue(receptor.getRegiao());
-		endereco.setPromptText(receptor.getRegiao());
+		endereco.setPromptText(receptor.getEndereco());
 		
 		if (receptor.isSangue() == true) {
 			sangue.setSelected(true);
@@ -158,26 +158,26 @@ public class TelaConfigControllerInst {
 			emailAtualizado = email.getText();
 		}
 		if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "senha", senha.getText());
+			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "senha", senha.getText());
 		}
 		if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "nome_instituição", nome.getText());
+			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "nome_instituição", nome.getText());
 		}
 		if (tel1.getText() != null && !tel1.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "tel1", tel1.getText());
+			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "tel1", tel1.getText());
 		}
 		if (tel2.getText() != null && !tel2.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "tel2", tel2.getText());
+			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "tel2", tel2.getText());
 		}
 		if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "endereco", endereco.getText());
+			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "endereco", endereco.getText());
 		}
 		CRUDReceptorJuridico.updateReceptor(emailAtualizado, "main_tipo_sangue", tipo_sangue.getValue());
 		CRUDReceptorJuridico.updateReceptor(emailAtualizado, "regiao", regiao.getValue());
 		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "sangue", sangue.isSelected());
 		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "rim", rim.isSelected());
 		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "figado", figado.isSelected());
-		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "medula", rim.isSelected());
+		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "medula", medula.isSelected());
 		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "pulmao", pulmao.isSelected());
 		CRUDReceptorJuridico.updateReceptor2(emailAtualizado, "pancreas", pancreas.isSelected());
 		ResultSet user = CRUDReceptorJuridico.selectReceptor3("email", emailAtualizado);
@@ -206,7 +206,7 @@ public class TelaConfigControllerInst {
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 		MainScreenController main = (MainScreenController)loader.getController();
-		main.setErr("Obrigado por usar nosso app.Esperamos que tenha gostado!");
+		main.setErr("Obrigado por ter usado nosso app!");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);

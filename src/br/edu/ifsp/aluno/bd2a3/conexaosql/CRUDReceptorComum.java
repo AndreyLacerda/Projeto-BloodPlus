@@ -24,6 +24,7 @@ public class CRUDReceptorComum {
 			try{
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -99,7 +100,7 @@ public class CRUDReceptorComum {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -126,7 +127,7 @@ public class CRUDReceptorComum {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
-				
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

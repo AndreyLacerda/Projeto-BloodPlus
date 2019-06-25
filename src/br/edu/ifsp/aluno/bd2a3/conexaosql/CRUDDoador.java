@@ -23,6 +23,7 @@ public class CRUDDoador {
 			try{
 				stmt = conn.createStatement();
 				stmt.execute(insert);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -97,6 +98,7 @@ public class CRUDDoador {
 				String update = "UPDATE Doador SET "+campo+" = '"+valor+"' WHERE email = '"+email+"';";
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -122,6 +124,7 @@ public class CRUDDoador {
 				String update = "UPDATE Doador SET "+campo+" = "+valor+" WHERE email = '"+email+"';";
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

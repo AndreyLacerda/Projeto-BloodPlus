@@ -232,28 +232,28 @@ public class TelaConfigController {
 				emailAtualizado = email.getText();
 			}
 			if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(doador.getEmail(), "senha", senha.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "senha", senha.getText());
 			}
 			if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(doador.getEmail(), "nome", nome.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "nome", nome.getText());
 			}
 			if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
-				CRUDReceptorComum.updateReceptor(doador.getEmail(), "sobrenome", sobrenome.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "sobrenome", sobrenome.getText());
 			}
 			if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(doador.getEmail(), "tel", tel.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "tel_fixo", tel.getText());
 			}
 			if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(doador.getEmail(), "cel", cel.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "celular", cel.getText());
 			}
 			if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-				CRUDDoador.updateDoador(doador.getEmail(), "endereco", endereco.getText());
+				CRUDDoador.updateDoador(emailAtualizado, "endereco", endereco.getText());
 			}
 			CRUDDoador.updateDoador(emailAtualizado, "regiao", regiao.getValue());
 			CRUDDoador.updateDoador2(emailAtualizado, "sangue", sangue.isSelected());
 			CRUDDoador.updateDoador2(emailAtualizado, "rim", rim.isSelected());
 			CRUDDoador.updateDoador2(emailAtualizado, "figado", figado.isSelected());
-			CRUDDoador.updateDoador2(emailAtualizado, "medula", rim.isSelected());
+			CRUDDoador.updateDoador2(emailAtualizado, "medula", medula.isSelected());
 			CRUDDoador.updateDoador2(emailAtualizado, "pulmao", pulmao.isSelected());
 			CRUDDoador.updateDoador2(emailAtualizado, "pancreas", pancreas.isSelected());
 			ResultSet user = CRUDDoador.selectDoador3("email", emailAtualizado);
@@ -273,28 +273,28 @@ public class TelaConfigController {
 					emailAtualizado = email.getText();
 				}
 				if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "senha", senha.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "senha", senha.getText());
 				}
 				if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "nome", nome.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "nome", nome.getText());
 				}
 				if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "sobrenome", sobrenome.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "sobrenome", sobrenome.getText());
 				}
 				if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "tel", tel.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "tel_fixo", tel.getText());
 				}
 				if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "cel", cel.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "celular", cel.getText());
 				}
 				if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
-					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "endereco", endereco.getText());
+					CRUDReceptorComum.updateReceptor(emailAtualizado, "endereco", endereco.getText());
 				}
 				CRUDReceptorComum.updateReceptor(emailAtualizado, "regiao", regiao.getValue());
 				CRUDReceptorComum.updateReceptor2(emailAtualizado, "sangue", sangue.isSelected());
 				CRUDReceptorComum.updateReceptor2(emailAtualizado, "rim", rim.isSelected());
 				CRUDReceptorComum.updateReceptor2(emailAtualizado, "figado", figado.isSelected());
-				CRUDReceptorComum.updateReceptor2(emailAtualizado, "medula", rim.isSelected());
+				CRUDReceptorComum.updateReceptor2(emailAtualizado, "medula", medula.isSelected());
 				CRUDReceptorComum.updateReceptor2(emailAtualizado, "pulmao", pulmao.isSelected());
 				CRUDReceptorComum.updateReceptor2(emailAtualizado, "pancreas", pancreas.isSelected());
 				ResultSet user = CRUDReceptorComum.selectReceptor3("email", emailAtualizado);
@@ -327,7 +327,7 @@ public class TelaConfigController {
 			FXMLLoader loader = new FXMLLoader();
 			Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 			MainScreenController main = (MainScreenController)loader.getController();
-			main.setErr("Obrigado por usar nosso app.Esperamos que tenha gostado!");
+			main.setErr("Obrigado por ter usado nosso app!");
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setResizable(false);
@@ -340,7 +340,7 @@ public class TelaConfigController {
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 				MainScreenController main = (MainScreenController)loader.getController();
-				main.setErr("Obrigado por usar nosso app.Esperamos que tenha gostado!");
+				main.setErr("Obrigado por ter usado nosso app!");
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setResizable(false);

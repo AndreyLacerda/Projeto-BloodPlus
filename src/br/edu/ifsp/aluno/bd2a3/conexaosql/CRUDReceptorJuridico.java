@@ -99,6 +99,7 @@ public class CRUDReceptorJuridico {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());
@@ -125,6 +126,7 @@ public class CRUDReceptorJuridico {
 				
 				stmt = conn.createStatement();
 				stmt.execute(update);
+				stmt.close();
 				return true;
 			} catch(SQLException esql) {
 				System.err.println("SQLException: " + esql.getMessage());

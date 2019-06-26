@@ -151,6 +151,7 @@ public class CadastroComumController {
 	
 	public void PreCadastro(ActionEvent event) throws IOException {
 		Stage stage = (Stage) preTela.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("PreCadastro.fxml"));
 		PreCadastroController preCadastro = (PreCadastroController)loader.getController();
@@ -184,6 +185,7 @@ public class CadastroComumController {
 				}
 			if (result.equals("Cadastro realizado com sucesso!")) {
 				Stage stage = (Stage) confirmar.getScene().getWindow();
+				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 				MainScreenController main = (MainScreenController)loader.getController();

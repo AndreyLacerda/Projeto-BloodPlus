@@ -68,6 +68,7 @@ public class TelaUserController {
 	public void config(ActionEvent event) throws IOException, SQLException {
 		if (type.equals("Doador") || type.equals("Receptor")) {
 			Stage stage = (Stage) config.getScene().getWindow();
+			stage.setTitle("Blood+");
 			FXMLLoader loader = new FXMLLoader();
 			ScrollPane root = loader.load(getClass().getResource("TelaConfig.fxml").openStream());
 			TelaConfigController telaConfig = (TelaConfigController)loader.getController();
@@ -83,6 +84,7 @@ public class TelaUserController {
 		} else {
 			if (type.equals("Instituição")) {
 				Stage stage = (Stage) config.getScene().getWindow();
+				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				ScrollPane root = loader.load(getClass().getResource("TelaConfigInst.fxml").openStream());
 				TelaConfigControllerInst telaConfig = (TelaConfigControllerInst)loader.getController();
@@ -97,6 +99,7 @@ public class TelaUserController {
 	
 	public void logout(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) logout.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));
 		Scene scene = new Scene(root);

@@ -28,6 +28,7 @@ public class PreCadastroController {
 	
 	public void doadorEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) doador.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -40,6 +41,7 @@ public class PreCadastroController {
 	
 	public void receptorEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) receptor.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -52,6 +54,7 @@ public class PreCadastroController {
 
 	public void instEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) insti.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUserInst.fxml").openStream());
 		CadastroComumController cadastroComum = (CadastroComumController)loader.getController();
@@ -64,6 +67,7 @@ public class PreCadastroController {
 	
 	public void mainScreen(ActionEvent event) throws IOException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));
 		MainScreenController main = (MainScreenController)loader.getController();

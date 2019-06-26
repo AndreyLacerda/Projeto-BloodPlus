@@ -308,6 +308,7 @@ public class TelaConfigController {
 		}
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
@@ -324,6 +325,7 @@ public class TelaConfigController {
 			CRUDMatchPessoaInst.deleteMatchDoador(doador.getEmail());
 			CRUDDoador.deleteDoador(doador.getEmail());
 			Stage stage = (Stage) excluir.getScene().getWindow();
+			stage.setTitle("Blood+");
 			FXMLLoader loader = new FXMLLoader();
 			Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 			MainScreenController main = (MainScreenController)loader.getController();
@@ -337,6 +339,7 @@ public class TelaConfigController {
 				CRUDMatchComum.deleteMatchReceptor(receptor.getEmail());
 				CRUDReceptorComum.deleteReceptor(receptor.getEmail());
 				Stage stage = (Stage) excluir.getScene().getWindow();
+				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 				MainScreenController main = (MainScreenController)loader.getController();
@@ -351,6 +354,7 @@ public class TelaConfigController {
 	
 	public void voltar(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();

@@ -189,6 +189,7 @@ public class TelaConfigControllerInst {
 		MatchInstFactory.criarMatchReceptor(receptor);
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();
@@ -203,6 +204,7 @@ public class TelaConfigControllerInst {
 		CRUDMatchPessoaInst.deleteMatchReceptor(receptor.getEmail());
 		CRUDReceptorJuridico.deleteReceptor(receptor.getEmail());
 		Stage stage = (Stage) excluir.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
 		MainScreenController main = (MainScreenController)loader.getController();
@@ -215,6 +217,7 @@ public class TelaConfigControllerInst {
 	
 	public void voltar(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 		TelaUserController telaUser = (TelaUserController)loader.getController();

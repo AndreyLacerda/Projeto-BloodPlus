@@ -53,7 +53,7 @@ public class MainScreenController {
 	
 	@FXML
 	public void initialize(){
-		logo.setImage(new Image(getClass().getResourceAsStream("/teste.jpg"), 229, 186, false, false));
+		logo.setImage(new Image(getClass().getResourceAsStream("/logo.png"), 229, 186, false, false));
 		loadData();
 		users.setValue("Doador");
 	}
@@ -84,6 +84,7 @@ public class MainScreenController {
 				Doador doador = new Doador (rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(19), rs.getString(6), rs.getString(7), rs.getString(9), rs.getString(16), rs.getString(17), Float.parseFloat(rs.getString(8)), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12), rs.getBoolean(13), rs.getBoolean(14), rs.getBoolean(15), true);
 				rs.close();
 				Stage stage = (Stage) login.getScene().getWindow();
+				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 				TelaUserController telaUser = (TelaUserController)loader.getController();
@@ -105,6 +106,7 @@ public class MainScreenController {
 					ReceptorComum receptor = new ReceptorComum (rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13), rs.getString(6), rs.getString(7), Float.parseFloat(rs.getString(8)), rs.getString(9), rs.getBoolean(12), rs.getBoolean(16), rs.getBoolean(15), rs.getBoolean(18), rs.getBoolean(14), rs.getBoolean(17), true, rs.getString(10), rs.getString(19));
 					rs.close();
 					Stage stage = (Stage) login.getScene().getWindow();
+					stage.setTitle("Blood+");
 					FXMLLoader loader = new FXMLLoader();
 					Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 					TelaUserController telaUser = (TelaUserController)loader.getController();
@@ -127,6 +129,7 @@ public class MainScreenController {
 							ReceptorJuridico receptor = new ReceptorJuridico(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(9), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12), rs.getBoolean(13), rs.getBoolean(14), true, rs.getString(16));
 							rs.close();
 							Stage stage = (Stage) login.getScene().getWindow();
+							stage.setTitle("Blood+");
 							FXMLLoader loader = new FXMLLoader();
 							Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
 							TelaUserController telaUser = (TelaUserController)loader.getController();
@@ -147,6 +150,7 @@ public class MainScreenController {
 	
 	public void cadastro(ActionEvent event) throws IOException {
 		Stage stage = (Stage) cadastro.getScene().getWindow();
+		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("PreCadastro.fxml"));
 		PreCadastroController preCadastro = (PreCadastroController)loader.getController();

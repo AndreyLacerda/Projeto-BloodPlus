@@ -20,7 +20,7 @@ public class CRUDReceptorComum {
 					+ "'"+receptor.getSobrenome()+"', '"+receptor.getDt_nasc()+"', '"+receptor.getTel()+"', '"+receptor.getCelular()+"', "
 							+ ""+receptor.getPeso()+", '"+receptor.getTipo_sangue()+"', '"+receptor.getRegiao()+"', "+receptor.isAtivo()+", "
 									+ ""+receptor.isSangue()+", '"+receptor.getCpf()+"', "+receptor.isPulmao()+", "+receptor.isFigado()+", "
-											+ "'"+receptor.isRim()+"', '"+receptor.isPancreas()+"',"+receptor.isMedula()+", '"+receptor.getEndereco()+"');";
+											+ ""+receptor.isRim()+", "+receptor.isPancreas()+","+receptor.isMedula()+", '"+receptor.getEndereco()+"');";
 			try{
 				stmt = conn.createStatement();
 				stmt.execute(insert);

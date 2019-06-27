@@ -17,7 +17,7 @@ public class CRUDReceptorJuridico {
 		if (conn != null) {
 			String insert = "INSERT INTO ReceptorJuridico VALUES ('"+receptor.getEmail()+"', '"+receptor.getSenha()+"', '"+receptor.getNome_instituição()+"', "
 					+ "'"+receptor.getCNPJ()+"', '"+receptor.getTel1()+"', '"+receptor.getTel2()+"', '"+receptor.getRegiao()+"', "
-							+ "'"+receptor.getEndereco()+"', '"+receptor.isSangue()+"', "+receptor.isRim()+", "+receptor.isFigado()+", "
+							+ "'"+receptor.getEndereco()+"', "+receptor.isSangue()+", "+receptor.isRim()+", "+receptor.isFigado()+", "
 									+ ""+receptor.isMedula()+", "+receptor.isPulmao()+", "+receptor.isPancreas()+", "+receptor.isAtivo()+", '"+receptor.getMain_tipo_sangue()+"');";
 			try{
 				stmt = conn.createStatement();

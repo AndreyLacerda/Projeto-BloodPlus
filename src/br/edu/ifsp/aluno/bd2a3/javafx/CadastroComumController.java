@@ -18,6 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -151,6 +152,7 @@ public class CadastroComumController {
 	
 	public void PreCadastro(ActionEvent event) throws IOException {
 		Stage stage = (Stage) preTela.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("PreCadastro.fxml"));
@@ -185,6 +187,7 @@ public class CadastroComumController {
 				}
 			if (result.equals("Cadastro realizado com sucesso!")) {
 				Stage stage = (Stage) confirmar.getScene().getWindow();
+				stage.getIcons().add(new Image("/logo.png"));
 				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());

@@ -20,6 +20,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -153,23 +154,23 @@ public class TelaConfigControllerInst {
 	
 	public void salvarAlteracoes(ActionEvent event) throws SQLException, IOException {
 		String emailAtualizado = receptor.getEmail();
-		if (email.getText() != null && !email.getText().trim().isEmpty()) {
+		if (email.getText() != null && !email.getText().trim().isEmpty() && !email.getText().contains("*") && !email.getText().contains("--") && !email.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(receptor.getEmail(), "email", email.getText());
 			emailAtualizado = email.getText();
 		}
-		if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
+		if (senha.getText() != null && !senha.getText().trim().isEmpty() && !senha.getText().contains("*") && !senha.getText().contains("--") && !senha.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "senha", senha.getText());
 		}
-		if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
+		if (nome.getText() != null && !nome.getText().trim().isEmpty() && !nome.getText().contains("*") && !nome.getText().contains("--") && !nome.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "nome_instituição", nome.getText());
 		}
-		if (tel1.getText() != null && !tel1.getText().trim().isEmpty()) {
+		if (tel1.getText() != null && !tel1.getText().trim().isEmpty() && !tel1.getText().contains("*") && !tel1.getText().contains("--") && !tel1.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "tel1", tel1.getText());
 		}
-		if (tel2.getText() != null && !tel2.getText().trim().isEmpty()) {
+		if (tel2.getText() != null && !tel2.getText().trim().isEmpty() && !tel2.getText().contains("*") && !tel2.getText().contains("--") && !tel2.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "tel2", tel2.getText());
 		}
-		if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
+		if (endereco.getText() != null && !endereco.getText().trim().isEmpty() && !endereco.getText().contains("*") && !endereco.getText().contains("--") && !endereco.getText().contains("//")) {
 			CRUDReceptorJuridico.updateReceptor(emailAtualizado, "endereco", endereco.getText());
 		}
 		CRUDReceptorJuridico.updateReceptor(emailAtualizado, "main_tipo_sangue", tipo_sangue.getValue());
@@ -189,6 +190,7 @@ public class TelaConfigControllerInst {
 		MatchInstFactory.criarMatchReceptor(receptor);
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
@@ -204,6 +206,7 @@ public class TelaConfigControllerInst {
 		CRUDMatchPessoaInst.deleteMatchReceptor(receptor.getEmail());
 		CRUDReceptorJuridico.deleteReceptor(receptor.getEmail());
 		Stage stage = (Stage) excluir.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -217,6 +220,7 @@ public class TelaConfigControllerInst {
 	
 	public void voltar(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());

@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -68,6 +69,7 @@ public class TelaUserController {
 	public void config(ActionEvent event) throws IOException, SQLException {
 		if (type.equals("Doador") || type.equals("Receptor")) {
 			Stage stage = (Stage) config.getScene().getWindow();
+			stage.getIcons().add(new Image("/logo.png"));
 			stage.setTitle("Blood+");
 			FXMLLoader loader = new FXMLLoader();
 			ScrollPane root = loader.load(getClass().getResource("TelaConfig.fxml").openStream());
@@ -84,6 +86,7 @@ public class TelaUserController {
 		} else {
 			if (type.equals("Instituição")) {
 				Stage stage = (Stage) config.getScene().getWindow();
+				stage.getIcons().add(new Image("/logo.png"));
 				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				ScrollPane root = loader.load(getClass().getResource("TelaConfigInst.fxml").openStream());
@@ -99,6 +102,7 @@ public class TelaUserController {
 	
 	public void logout(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) logout.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));

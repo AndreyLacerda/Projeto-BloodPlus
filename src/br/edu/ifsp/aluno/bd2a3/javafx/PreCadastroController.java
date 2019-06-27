@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class PreCadastroController {
 	
 	public void doadorEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) doador.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
@@ -41,6 +43,7 @@ public class PreCadastroController {
 	
 	public void receptorEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) receptor.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUsersComuns.fxml").openStream());
@@ -54,6 +57,7 @@ public class PreCadastroController {
 
 	public void instEvento(ActionEvent event) throws IOException {
 		Stage stage = (Stage) insti.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		ScrollPane root = loader.load(getClass().getResource("CadastroUserInst.fxml").openStream());
@@ -67,6 +71,7 @@ public class PreCadastroController {
 	
 	public void mainScreen(ActionEvent event) throws IOException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml"));

@@ -52,6 +52,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
+            <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="777.0" prefHeight="23.0" prefWidth="245.0" textFill="WHITE" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

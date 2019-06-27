@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application{
@@ -12,6 +13,7 @@ public class App extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("MainScreenFXML.fxml"));
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

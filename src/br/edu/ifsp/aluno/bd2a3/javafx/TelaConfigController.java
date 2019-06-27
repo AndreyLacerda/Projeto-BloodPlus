@@ -24,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -227,26 +228,26 @@ public class TelaConfigController {
 	public void salvarAlteracoes(ActionEvent event) throws SQLException, IOException {
 		if (type.equals("Doador")) {
 			String emailAtualizado = doador.getEmail();
-			if (email.getText() != null && !email.getText().trim().isEmpty()) {
+			if (email.getText() != null && !email.getText().trim().isEmpty() && !email.getText().contains("*") && !email.getText().contains("--") && !email.getText().contains("//")) {
 				CRUDDoador.updateDoador(doador.getEmail(), "email", email.getText());
 				emailAtualizado = email.getText();
 			}
-			if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
+			if (senha.getText() != null && !senha.getText().trim().isEmpty() && !senha.getText().contains("*") && !senha.getText().contains("--") && !senha.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "senha", senha.getText());
 			}
-			if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
+			if (nome.getText() != null && !nome.getText().trim().isEmpty() && !nome.getText().contains("*") && !nome.getText().contains("--") && !nome.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "nome", nome.getText());
 			}
-			if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
+			if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty() && !sobrenome.getText().contains("*") && !sobrenome.getText().contains("--") && !sobrenome.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "sobrenome", sobrenome.getText());
 			}
-			if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
+			if (tel.getText() != null && !tel.getText().trim().isEmpty() && !tel.getText().contains("*") && !tel.getText().contains("--") && !tel.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "tel_fixo", tel.getText());
 			}
-			if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
+			if (cel.getText() != null && !cel.getText().trim().isEmpty() && !cel.getText().contains("*") && !cel.getText().contains("--") && !cel.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "celular", cel.getText());
 			}
-			if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
+			if (endereco.getText() != null && !endereco.getText().trim().isEmpty() && !endereco.getText().contains("*") && !endereco.getText().contains("--") && !endereco.getText().contains("//")) {
 				CRUDDoador.updateDoador(emailAtualizado, "endereco", endereco.getText());
 			}
 			CRUDDoador.updateDoador(emailAtualizado, "regiao", regiao.getValue());
@@ -268,26 +269,26 @@ public class TelaConfigController {
 		} else {
 			if (type.equals("Receptor")) {
 				String emailAtualizado = receptor.getEmail();
-				if (email.getText() != null && !email.getText().trim().isEmpty()) {
+				if (email.getText() != null && !email.getText().trim().isEmpty() && !email.getText().contains("*") && !email.getText().contains("--") && !email.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(receptor.getEmail(), "email", email.getText());
 					emailAtualizado = email.getText();
 				}
-				if (senha.getText() != null && !senha.getText().trim().isEmpty()) {
+				if (senha.getText() != null && !senha.getText().trim().isEmpty() && !senha.getText().contains("*") && !senha.getText().contains("--") && !senha.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "senha", senha.getText());
 				}
-				if (nome.getText() != null && !nome.getText().trim().isEmpty()) {
+				if (nome.getText() != null && !nome.getText().trim().isEmpty() && !nome.getText().contains("*") && !nome.getText().contains("--") && !nome.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "nome", nome.getText());
 				}
-				if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty()) {
+				if (sobrenome.getText() != null && !sobrenome.getText().trim().isEmpty() && !sobrenome.getText().contains("*") && !sobrenome.getText().contains("--") && !sobrenome.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "sobrenome", sobrenome.getText());
 				}
-				if (tel.getText() != null && !tel.getText().trim().isEmpty()) {
+				if (tel.getText() != null && !tel.getText().trim().isEmpty() && !tel.getText().contains("*") && !tel.getText().contains("--") && !tel.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "tel_fixo", tel.getText());
 				}
-				if (cel.getText() != null && !cel.getText().trim().isEmpty()) {
+				if (cel.getText() != null && !cel.getText().trim().isEmpty() && !cel.getText().contains("*") && !cel.getText().contains("--") && !cel.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "celular", cel.getText());
 				}
-				if (endereco.getText() != null && !endereco.getText().trim().isEmpty()) {
+				if (endereco.getText() != null && !endereco.getText().trim().isEmpty() && !endereco.getText().contains("*") && !endereco.getText().contains("--") && !endereco.getText().contains("//")) {
 					CRUDReceptorComum.updateReceptor(emailAtualizado, "endereco", endereco.getText());
 				}
 				CRUDReceptorComum.updateReceptor(emailAtualizado, "regiao", regiao.getValue());
@@ -308,6 +309,7 @@ public class TelaConfigController {
 		}
 		
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
@@ -325,6 +327,7 @@ public class TelaConfigController {
 			CRUDMatchPessoaInst.deleteMatchDoador(doador.getEmail());
 			CRUDDoador.deleteDoador(doador.getEmail());
 			Stage stage = (Stage) excluir.getScene().getWindow();
+			stage.getIcons().add(new Image("/logo.png"));
 			stage.setTitle("Blood+");
 			FXMLLoader loader = new FXMLLoader();
 			Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -339,6 +342,7 @@ public class TelaConfigController {
 				CRUDMatchComum.deleteMatchReceptor(receptor.getEmail());
 				CRUDReceptorComum.deleteReceptor(receptor.getEmail());
 				Stage stage = (Stage) excluir.getScene().getWindow();
+				stage.getIcons().add(new Image("/logo.png"));
 				stage.setTitle("Blood+");
 				FXMLLoader loader = new FXMLLoader();
 				Pane root = loader.load(getClass().getResource("MainScreenFXML.fxml").openStream());
@@ -354,6 +358,7 @@ public class TelaConfigController {
 	
 	public void voltar(ActionEvent event) throws IOException, SQLException {
 		Stage stage = (Stage) voltar.getScene().getWindow();
+		stage.getIcons().add(new Image("/logo.png"));
 		stage.setTitle("Blood+");
 		FXMLLoader loader = new FXMLLoader();
 		Pane root = loader.load(getClass().getResource("TelaUser.fxml").openStream());
